@@ -8,19 +8,30 @@
 #if !defined(STATISTICS_H)
 #define STATISTICS_H
 
-#include "DamisService.h"
+#include "ServeRequest.h"
 
-/**
- * Class that implements statistical calculations
+/** \brief Class that implements statistical calculations
+ *
  */
-class Statistics : public DamisService
+class Statistics : public ServeRequest
 {
 
 public:
-	Statistics(InitDamisServiceFile*);
+    /** \brief Constructor
+     *
+     * \param InitDamisService* pointer to the InitDamisService object
+     *
+     */
+    Statistics(InitDamisService*);
+
+    /** \brief Calulates statistics of the data section
+     *
+     * \return void
+     *
+     */
 	void statPrimitives();
-
-
+    /** \brief Destructor
+     */
 	virtual ~Statistics();
 };
-#endif // !defined(STATISTICS_H)
+#endif //!defined(STATISTICS_H)

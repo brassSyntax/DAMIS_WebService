@@ -196,7 +196,7 @@ static int serve_Damis__SAMANN(DAMISService*);
 static int serve_Damis__SOM(DAMISService*);
 static int serve_Damis__SOMMDS(DAMISService*);
 static int serve_Damis__MLP(DAMISService*);
-static int serve_Damis__C45(DAMISService*);
+static int serve_Damis__DF(DAMISService*);
 static int serve_Damis__KMEANS(DAMISService*);
 static int serve_Damis__STATPRIMITIVES(DAMISService*);
 static int serve_Damis__CLEANDATA(DAMISService*);
@@ -224,8 +224,8 @@ int DAMISService::dispatch()
 		return serve_Damis__SOMMDS(this);
 	if (!soap_match_tag(this->soap, this->soap->tag, "Damis:MLP"))
 		return serve_Damis__MLP(this);
-	if (!soap_match_tag(this->soap, this->soap->tag, "Damis:C45"))
-		return serve_Damis__C45(this);
+	if (!soap_match_tag(this->soap, this->soap->tag, "Damis:DF"))
+		return serve_Damis__DF(this);
 	if (!soap_match_tag(this->soap, this->soap->tag, "Damis:KMEANS"))
 		return serve_Damis__KMEANS(this);
 	if (!soap_match_tag(this->soap, this->soap->tag, "Damis:STATPRIMITIVES"))
@@ -549,7 +549,7 @@ static int serve_Damis__MLP(DAMISService *service)
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap->error;
-	soap->error = service->MLP(soap_tmp_Damis__MLP.X, soap_tmp_Damis__MLP.h1pNo, soap_tmp_Damis__MLP.h2pNo, soap_tmp_Damis__MLP.h3pNo, soap_tmp_Damis__MLP.dL, soap_tmp_Damis__MLP.dT, soap_tmp_Damis__MLP.dV, soap_tmp_Damis__MLP.maxIteration, soap_tmp_Damis__MLP.p, soap_tmp_Damis__MLP.maxCalcTime, _param_1);
+	soap->error = service->MLP(soap_tmp_Damis__MLP.X, soap_tmp_Damis__MLP.h1pNo, soap_tmp_Damis__MLP.h2pNo, soap_tmp_Damis__MLP.qty, soap_tmp_Damis__MLP.kFoldValidation, soap_tmp_Damis__MLP.maxIteration, soap_tmp_Damis__MLP.p, soap_tmp_Damis__MLP.maxCalcTime, _param_1);
 	if (soap->error)
 		return soap->error;
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -579,31 +579,31 @@ static int serve_Damis__MLP(DAMISService *service)
 	return soap_closesock(soap);
 }
 
-static int serve_Damis__C45(DAMISService *service)
+static int serve_Damis__DF(DAMISService *service)
 {	struct soap *soap = service->soap;
-	struct Damis__C45 soap_tmp_Damis__C45;
-	struct Damis__C45Response _param_1;
-	soap_default_Damis__C45Response(soap, &_param_1);
-	soap_default_Damis__C45(soap, &soap_tmp_Damis__C45);
-	if (!soap_get_Damis__C45(soap, &soap_tmp_Damis__C45, "Damis:C45", NULL))
+	struct Damis__DF soap_tmp_Damis__DF;
+	struct Damis__DFResponse _param_1;
+	soap_default_Damis__DFResponse(soap, &_param_1);
+	soap_default_Damis__DF(soap, &soap_tmp_Damis__DF);
+	if (!soap_get_Damis__DF(soap, &soap_tmp_Damis__DF, "Damis:DF", NULL))
 		return soap->error;
 	if (soap_body_end_in(soap)
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap->error;
-	soap->error = service->C45(soap_tmp_Damis__C45.X, soap_tmp_Damis__C45.q, soap_tmp_Damis__C45.dL, soap_tmp_Damis__C45.dT, soap_tmp_Damis__C45.maxCalcTime, _param_1);
+	soap->error = service->DF(soap_tmp_Damis__DF.X, soap_tmp_Damis__DF.r, soap_tmp_Damis__DF.dL, soap_tmp_Damis__DF.dT, soap_tmp_Damis__DF.maxCalcTime, _param_1);
 	if (soap->error)
 		return soap->error;
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
 	soap_serializeheader(soap);
-	soap_serialize_Damis__C45Response(soap, &_param_1);
+	soap_serialize_Damis__DFResponse(soap, &_param_1);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put_Damis__C45Response(soap, &_param_1, "Damis:C45Response", NULL)
+		 || soap_put_Damis__DFResponse(soap, &_param_1, "Damis:DFResponse", NULL)
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -613,7 +613,7 @@ static int serve_Damis__C45(DAMISService *service)
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put_Damis__C45Response(soap, &_param_1, "Damis:C45Response", NULL)
+	 || soap_put_Damis__DFResponse(soap, &_param_1, "Damis:DFResponse", NULL)
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))

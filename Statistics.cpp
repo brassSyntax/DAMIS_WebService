@@ -12,10 +12,10 @@
 
 #include "Statistics.h"
 #include "HelperMethods.h"
-#include "logging\easylogging++.h"
+#include "logging/easylogging++.h"
 
 
-Statistics::Statistics(InitDamisServiceFile* initFile):DamisService(initFile){
+Statistics::Statistics(InitDamisService* initFile):ServeRequest(initFile){
 
     LOG (INFO) << "Statistical data processing has been called";
 }
@@ -36,38 +36,38 @@ void Statistics::statPrimitives()
 
 
     std::vector<std::string> dummy;
-    dummy.reserve(0); //pass dummy vector to write function since no attributre after transform are left
+    dummy.reserve(0); //pass dummy vector to write function since no attribute after transform are left
 
 
-    for (int i = 0; i < DamisService::noOfDataAttr; i++)
+    for (int i = 0; i < serveFile->getNumberOfAttributes(); i++)
     {
-        for (int j = 0; j < DamisService::noOfDataRows; j++)
+        for (int j = 0; j < serveFile->getNumberOfObjects(); j++)
         {
-            DamisService::tmpDataVector.push_back(this->getDataDoubleFormat().at(j).at(i));
+            ServeRequest::tmpDataVector.push_back(serveFile->getDoubleDataAt(j, i));
         }
-            double min = *std::min_element(DamisService::tmpDataVector.begin(), DamisService::tmpDataVector.end());
-            double max = *std::max_element(DamisService::tmpDataVector.begin(), DamisService::tmpDataVector.end());
-            double mean = HelperMethods::getMean(DamisService::tmpDataVector);
-            double stdev = HelperMethods::getStd(DamisService::tmpDataVector); //daliname is N o ne is N-1
+            double min = *std::min_element(ServeRequest::tmpDataVector.begin(), ServeRequest::tmpDataVector.end());
+            double max = *std::max_element(ServeRequest::tmpDataVector.begin(), ServeRequest::tmpDataVector.end());
+            double mean = HelperMethods::getMean(ServeRequest::tmpDataVector);
+            double stdev = HelperMethods::getStd(ServeRequest::tmpDataVector); //daliname is N o ne is N-1
 
-            size_t n = DamisService::tmpDataVector.size() / 2;
-            nth_element(DamisService::tmpDataVector.begin(), DamisService::tmpDataVector.begin()+ n, DamisService::tmpDataVector.end());
+            size_t n = ServeRequest::tmpDataVector.size() / 2;
+            nth_element(ServeRequest::tmpDataVector.begin(), ServeRequest::tmpDataVector.begin()+ n, ServeRequest::tmpDataVector.end());
 
-            double median = DamisService::tmpDataVector.at(n);
-            DamisService::tmpDataVector.clear();
+            double median = ServeRequest::tmpDataVector.at(n);
+            ServeRequest::tmpDataVector.clear();
 
            //  Statistics::tmpDataVector = {min, max, mean, stdev, median}; if C11 compiler
-           DamisService::tmpDataVector.push_back(min);
-           DamisService::tmpDataVector.push_back(max);
-           DamisService::tmpDataVector.push_back(mean);
-           DamisService::tmpDataVector.push_back(stdev);
-           DamisService::tmpDataVector.push_back(median);
+           ServeRequest::tmpDataVector.push_back(min);
+           ServeRequest::tmpDataVector.push_back(max);
+           ServeRequest::tmpDataVector.push_back(mean);
+           ServeRequest::tmpDataVector.push_back(stdev);
+           ServeRequest::tmpDataVector.push_back(median);
 
-            DamisService::writeData.push_back(DamisService::tmpDataVector);
-            DamisService::tmpDataVector.clear();
+            ServeRequest::writeData.push_back(ServeRequest::tmpDataVector);
+            ServeRequest::tmpDataVector.clear();
     }
 
-    this->writeDataToFile(outFile->getFilePath(), prepareDataSection(DamisService::writeData, dummy), prepareAttributeSection(attrNames, dummy, dummy));
+    this->writeDataToFile(outFile->getFilePath(), prepareDataSection(ServeRequest::writeData, dummy), prepareAttributeSection(attrNames, dummy, dummy));
 
 }
 

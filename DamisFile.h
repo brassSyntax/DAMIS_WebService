@@ -9,45 +9,46 @@
 #define DAMISFILE_H
 
 #include <string>
-    /**
-	 * Class that describes each file (local, http paths and file name of the input/output file defined by the prefix that is passed by creating class object)
-	 */
+
+     /** \brief Class that describes each file
+      *         (local, http paths and file name of the input/output file defined by the prefix that is passed by creating class object)
+      *
+      */
 class DamisFile
 {
 
 public:
+    /** \brief Destructor
+     */
 	virtual ~DamisFile();
-	/**
-	 * Constructor that accepts prefix of the file name to be generated
-	 */
+     /** \brief Constructor that accepts prefix of the file name to be generated
+      *
+      * \param std::string preffix added to the file name
+      */
 	DamisFile(std::string preffix);
-    /**
-	 * Method returns file name
-	 */
+     /** \brief Method returns generated file name
+      * \return std::string
+      */
 	std::string getFileName();
-    /**
-	 * Method returns file name with the local path
-	 */
+     /** \brief Method returns file name with the local path
+      * \return std::string
+      *
+      */
 	std::string getFilePath();
-    /**
-	 * Method returns file name with the http path
-	 */
+     /** \brief Method returns file name with the http path
+      * \return std::string
+      *
+      */
 	std::string getHttpPath();
 
 
 private:
-	/**
-	 * File name
-	 */
-	std::string fileName;
-	/**
-	 * File path
-	 */
-	std::string filePath;
-	/**
-	 * File http path
-	 */
-	std::string fileHttpPath;
+
+	std::string fileName; /**< File name  */
+
+	std::string filePath; /**< File path */
+
+	std::string fileHttpPath; /**< File http path */
 
 };
-#endif // DAMISFILE_H
+#endif //!DAMISFILE_H

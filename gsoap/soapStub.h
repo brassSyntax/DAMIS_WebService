@@ -291,10 +291,8 @@ public:
 	std::string X;	/* required element of type xsd:string */
 	int h1pNo;	/* required element of type xsd:int */
 	int h2pNo;	/* required element of type xsd:int */
-	int h3pNo;	/* required element of type xsd:int */
-	double dL;	/* required element of type xsd:double */
-	double dT;	/* required element of type xsd:double */
-	double dV;	/* required element of type xsd:double */
+	double qty;	/* required element of type xsd:double */
+	bool kFoldValidation;	/* required element of type xsd:boolean */
 	int maxIteration;	/* required element of type xsd:int */
 	int p;	/* required element of type xsd:int */
 	int maxCalcTime;	/* required element of type xsd:int */
@@ -303,33 +301,33 @@ public:
 };
 #endif
 
-#ifndef SOAP_TYPE_Damis__C45Response
-#define SOAP_TYPE_Damis__C45Response (43)
-/* Damis:C45Response */
-struct Damis__C45Response
+#ifndef SOAP_TYPE_Damis__DFResponse
+#define SOAP_TYPE_Damis__DFResponse (43)
+/* Damis:DFResponse */
+struct Damis__DFResponse
 {
 public:
 	std::string Y;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* required element of type xsd:string */
 	double calcTime;	/* required element of type xsd:double */
 	double algorithmError;	/* required element of type xsd:double */
 public:
-	int soap_type() const { return 43; } /* = unique id SOAP_TYPE_Damis__C45Response */
+	int soap_type() const { return 43; } /* = unique id SOAP_TYPE_Damis__DFResponse */
 };
 #endif
 
-#ifndef SOAP_TYPE_Damis__C45
-#define SOAP_TYPE_Damis__C45 (46)
-/* Damis:C45 */
-struct Damis__C45
+#ifndef SOAP_TYPE_Damis__DF
+#define SOAP_TYPE_Damis__DF (46)
+/* Damis:DF */
+struct Damis__DF
 {
 public:
 	std::string X;	/* required element of type xsd:string */
-	double q;	/* required element of type xsd:double */
+	double r;	/* required element of type xsd:double */
 	double dL;	/* required element of type xsd:double */
 	double dT;	/* required element of type xsd:double */
 	int maxCalcTime;	/* required element of type xsd:int */
 public:
-	int soap_type() const { return 46; } /* = unique id SOAP_TYPE_Damis__C45 */
+	int soap_type() const { return 46; } /* = unique id SOAP_TYPE_Damis__DF */
 };
 #endif
 
@@ -341,7 +339,6 @@ struct Damis__KMEANSResponse
 public:
 	std::string Y;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* required element of type xsd:string */
 	double calcTime;	/* required element of type xsd:double */
-	int kBest;	/* required element of type xsd:int */
 public:
 	int soap_type() const { return 47; } /* = unique id SOAP_TYPE_Damis__KMEANSResponse */
 };

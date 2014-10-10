@@ -8,56 +8,68 @@
 #if !defined(PREPROCESS_H)
 #define PREPROCESS_H
 
-#include "DamisService.h"
+#include "ServeRequest.h"
 #include <string>
 
-/**
- * Implements all components described in Preprocessing gropup
- */
-class Preprocess : public DamisService
+ /** \brief Implements all components described in Preprocessing gropup
+  */
+class Preprocess : public ServeRequest
 {
 
 public:
-	Preprocess(InitDamisServiceFile*);
-
-    /**
-     *Normalize data either by mean and std or by mapping to interval
+    /** \brief Constructor
+     *
+     * \param InitDamisService* object which data mus be preprocessed
      */
+
+	Preprocess(InitDamisService*);
+     /** \brief Normalize data either by mean and std or by mapping to interval
+      *
+      * \param bool = true then normalize by mean and std, else map to interval
+      * \param double either mean or lbound value
+      * \param double either std of ubound value
+      * \return void
+      *
+      */
 	void normData(bool, double, double);
-    /**
-     *Function that performs data transpose
-     */
+     /** \brief Function that performs data transpose
+      * \return void
+      *
+      */
 	void transposeData();
-    /**
-     *Function that performs data cleaning
-     */
+     /** \brief Function that performs data cleaning
+      * \return void
+      *
+      */
 	void cleanData();
-	 /**
-     *Function that performs data cleaning
-     */
+     /** \brief Function that performs data splitting
+      *
+      * \param bool perform shufling
+      * \param double relative number of object in first set
+      * \param double relative number of objects in second set
+      * \return void
+      *
+      */
 	void splitData(bool, double, double);
-    /**
-     *Function that performs data filtering according to sigma rule
-     */
+     /** \brief Function that performs data filtering
+      *
+      * \param  bool data part to return outliers or not
+      * \param double z value
+      * \param int attribute index acording to wich perform data filtering
+      * \return  void
+      *
+      */
 	void filterData(bool, double, int);
-	 /**
-     *Variable that holds alternative output path ir needed (by default NULL)
-     */
-    DamisFile *altOutFile = NULL;
 
+    DamisFile *altOutFile;/**< Variable that holds alternative output path if needed (by default NULL) Only for methods that return two output files of data*/
+
+    /** \brief Destructor
+     */
 	virtual ~Preprocess();
 
 private:
-   /* std::string httpPath;
-    std::string localPath;*/
-    /**
-     *Variable that holds object classes to be written in output file
-     */
-    std::vector<std::string> writeClass;
-    /*std::vector<std::vector<double>> writeData;
-    std::vector<double> tmpDataVector;
-    int noOfDataRows;
-    int noOfDataAttr;*/
+
+    std::vector<std::string> writeClass; /**< Variable that holds object classes to be written in output file */
 
 };
-#endif // !defined(PREPROCESS_H)
+#endif //!defined(PREPROCESS_H)

@@ -11,11 +11,14 @@
 
 #include "HelperMethods.h"
 #include "ServiceSettings.h"
-#include "dirent\dirent.h"
-#include "logging\easylogging++.h"
 
+#include "logging/easylogging++.h"
+
+#include <dirent.h>
 #include <time.h>
 #include <string>
+#include <numeric>
+#include <cmath>
 
 const char* HelperMethods::alphanum= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -100,7 +103,7 @@ return retVal;
 /**
  * Method generates random file name and adds to the prefix
  */
-std::string HelperMethods::generateFileName(std::string preffix)
+std::string HelperMethods::generateFileName(std::string preffix, bool addExtension)
 {
 
     LOG(INFO) << "Starting file name generation with the preffix: " << preffix;
@@ -114,7 +117,10 @@ std::string HelperMethods::generateFileName(std::string preffix)
     int qty = catString.length() + ServiceSettings::lenghtOfTmpFileName;
     for ( i = catString.length(); i < qty; ++i)
         catString += (HelperMethods::alphanum[rand() % (strlen(HelperMethods::alphanum) - 1)]);
-    catString += ServiceSettings::dataFileExtension;
+
+    if (addExtension)
+        catString += ServiceSettings::dataFileExtension;
+
     if (catString.empty())
     {
         LOG(ERROR) << "Unable to generate file name";
@@ -324,7 +330,7 @@ char **HelperMethods::getcgivars(){
     cgivars= (char **) malloc((paircount*2+1)*sizeof(char **)) ;
     for (i= 0; i<paircount; i++)
     {
-        if (eqpos=strchr(pairlist[i], '='))
+        if ((eqpos=strchr(pairlist[i], '=')))
         {
             *eqpos= '\0' ;
             HelperMethods::unescape_url(cgivars[i*2+1]= strdup(eqpos+1)) ;
@@ -386,4 +392,26 @@ double HelperMethods::getStd(std::vector<double> dataVector)
     std::transform(dataVector.begin(), dataVector.end(), diff.begin(), std::bind2nd(std::minus<double>(), HelperMethods::getMean(dataVector)));
     double sq_sum = std::inner_product(diff.begin(), diff.end(), diff.begin(), 0.0);
     return std::sqrt(sq_sum / dataVector.size()); //daliname is N o ne is N-1
+}
+
+double HelperMethods::strToDouble(std::string cmdParam)
+{
+    const char *str = cmdParam.c_str();
+    char *err;
+    double x = strtod(str, &err);
+    if (*err == 0 && cmdParam !="")
+    {
+        return atof(cmdParam.c_str());
+    }
+}
+
+int HelperMethods::strToInt(std::string cmdParam)
+{
+    const char *str = cmdParam.c_str();
+    char *err;
+    double x = strtod(str, &err);
+    if (*err == 0 && cmdParam !="")
+    {
+        return atoi(cmdParam.c_str());
+    }
 }

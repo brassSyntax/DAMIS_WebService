@@ -10,7 +10,7 @@
 #define _ELPP_NO_DEFAULT_LOG_FILE
 
 #include "ErrorResponse.h"
-#include "logging\easylogging++.h"
+#include "logging/easylogging++.h"
 
 std::string ErrorResponse::faultString = "Damis error";
 std::string ErrorResponse::faultDetail = "";

@@ -101,10 +101,10 @@ class SOAP_CMAC DAMISService
 	virtual	int SOMMDS(std::string X, int rows, int columns, int eHat, int mdsIteration, double eps, int mdsProjection, int maxCalcTime, struct Damis__SOMMDSResponse &_param_1) SOAP_PURE_VIRTUAL;
 
 	/// Web service operation 'MLP' (returns error code or SOAP_OK)
-	virtual	int MLP(std::string X, int h1pNo, int h2pNo, int h3pNo, double dL, double dT, double dV, int maxIteration, int p, int maxCalcTime, struct Damis__MLPResponse &_param_1) SOAP_PURE_VIRTUAL;
+	virtual	int MLP(std::string X, int h1pNo, int h2pNo, double qty, bool kFoldValidation, int maxIteration, int p, int maxCalcTime, struct Damis__MLPResponse &_param_1) SOAP_PURE_VIRTUAL;
 
-	/// Web service operation 'C45' (returns error code or SOAP_OK)
-	virtual	int C45(std::string X, double q, double dL, double dT, int maxCalcTime, struct Damis__C45Response &_param_1) SOAP_PURE_VIRTUAL;
+	/// Web service operation 'DF' (returns error code or SOAP_OK)
+	virtual	int DF(std::string X, double r, double dL, double dT, int maxCalcTime, struct Damis__DFResponse &_param_1) SOAP_PURE_VIRTUAL;
 
 	/// Web service operation 'KMEANS' (returns error code or SOAP_OK)
 	virtual	int KMEANS(std::string X, int kMax, int maxIteration, int maxCalcTime, struct Damis__KMEANSResponse &_param_1) SOAP_PURE_VIRTUAL;

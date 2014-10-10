@@ -782,77 +782,77 @@ SOAP_FMAC1 struct Damis__KMEANSResponse * SOAP_FMAC2 soap_instantiate_Damis__KME
 
 inline struct Damis__KMEANSResponse * soap_new_Damis__KMEANSResponse(struct soap *soap, int n = -1) { return soap_instantiate_Damis__KMEANSResponse(soap, n, NULL, NULL, NULL); }
 
-inline struct Damis__KMEANSResponse * soap_new_req_Damis__KMEANSResponse(struct soap *soap, std::string& Y, double calcTime, int kBest) { struct Damis__KMEANSResponse *_p = soap_instantiate_Damis__KMEANSResponse(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__KMEANSResponse(soap, _p); _p->Y = Y; _p->calcTime = calcTime; _p->kBest = kBest; } return _p; }
+inline struct Damis__KMEANSResponse * soap_new_req_Damis__KMEANSResponse(struct soap *soap, std::string& Y, double calcTime) { struct Damis__KMEANSResponse *_p = soap_instantiate_Damis__KMEANSResponse(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__KMEANSResponse(soap, _p); _p->Y = Y; _p->calcTime = calcTime; } return _p; }
 
-inline struct Damis__KMEANSResponse * soap_new_set_Damis__KMEANSResponse(struct soap *soap, std::string& Y, double calcTime, int kBest) { struct Damis__KMEANSResponse *_p = soap_instantiate_Damis__KMEANSResponse(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__KMEANSResponse(soap, _p); _p->Y = Y; _p->calcTime = calcTime; _p->kBest = kBest; } return _p; }
+inline struct Damis__KMEANSResponse * soap_new_set_Damis__KMEANSResponse(struct soap *soap, std::string& Y, double calcTime) { struct Damis__KMEANSResponse *_p = soap_instantiate_Damis__KMEANSResponse(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__KMEANSResponse(soap, _p); _p->Y = Y; _p->calcTime = calcTime; } return _p; }
 
 inline void soap_delete_Damis__KMEANSResponse(struct soap *soap, struct Damis__KMEANSResponse *p) { soap_delete(soap, p); }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_Damis__KMEANSResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_Damis__C45
-#define SOAP_TYPE_Damis__C45 (46)
+#ifndef SOAP_TYPE_Damis__DF
+#define SOAP_TYPE_Damis__DF (46)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_Damis__C45(struct soap*, struct Damis__C45 *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_Damis__C45(struct soap*, const struct Damis__C45 *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_Damis__C45(struct soap*, const char*, int, const struct Damis__C45 *, const char*);
-SOAP_FMAC3 struct Damis__C45 * SOAP_FMAC4 soap_in_Damis__C45(struct soap*, const char*, struct Damis__C45 *, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_Damis__DF(struct soap*, struct Damis__DF *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_Damis__DF(struct soap*, const struct Damis__DF *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_Damis__DF(struct soap*, const char*, int, const struct Damis__DF *, const char*);
+SOAP_FMAC3 struct Damis__DF * SOAP_FMAC4 soap_in_Damis__DF(struct soap*, const char*, struct Damis__DF *, const char*);
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_Damis__C45(struct soap*, const struct Damis__C45 *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_Damis__DF(struct soap*, const struct Damis__DF *, const char*, const char*);
 
-#ifndef soap_write_Damis__C45
-#define soap_write_Damis__C45(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_Damis__C45(soap, data),0) || soap_put_Damis__C45(soap, data, "Damis:C45", NULL) || soap_end_send(soap), (soap)->error )
-#endif
-
-SOAP_FMAC3 struct Damis__C45 * SOAP_FMAC4 soap_get_Damis__C45(struct soap*, struct Damis__C45 *, const char*, const char*);
-
-#ifndef soap_read_Damis__C45
-#define soap_read_Damis__C45(soap, data) ( soap_begin_recv(soap) || !soap_get_Damis__C45(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_write_Damis__DF
+#define soap_write_Damis__DF(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_Damis__DF(soap, data),0) || soap_put_Damis__DF(soap, data, "Damis:DF", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 struct Damis__C45 * SOAP_FMAC2 soap_instantiate_Damis__C45(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 struct Damis__DF * SOAP_FMAC4 soap_get_Damis__DF(struct soap*, struct Damis__DF *, const char*, const char*);
 
-inline struct Damis__C45 * soap_new_Damis__C45(struct soap *soap, int n = -1) { return soap_instantiate_Damis__C45(soap, n, NULL, NULL, NULL); }
-
-inline struct Damis__C45 * soap_new_req_Damis__C45(struct soap *soap, std::string& X, double q, double dL, double dT, int maxCalcTime) { struct Damis__C45 *_p = soap_instantiate_Damis__C45(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__C45(soap, _p); _p->X = X; _p->q = q; _p->dL = dL; _p->dT = dT; _p->maxCalcTime = maxCalcTime; } return _p; }
-
-inline struct Damis__C45 * soap_new_set_Damis__C45(struct soap *soap, std::string& X, double q, double dL, double dT, int maxCalcTime) { struct Damis__C45 *_p = soap_instantiate_Damis__C45(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__C45(soap, _p); _p->X = X; _p->q = q; _p->dL = dL; _p->dT = dT; _p->maxCalcTime = maxCalcTime; } return _p; }
-
-inline void soap_delete_Damis__C45(struct soap *soap, struct Damis__C45 *p) { soap_delete(soap, p); }
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_Damis__C45(struct soap*, int, int, void*, size_t, const void*, size_t);
-
-#ifndef SOAP_TYPE_Damis__C45Response
-#define SOAP_TYPE_Damis__C45Response (43)
-#endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_Damis__C45Response(struct soap*, struct Damis__C45Response *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_Damis__C45Response(struct soap*, const struct Damis__C45Response *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_Damis__C45Response(struct soap*, const char*, int, const struct Damis__C45Response *, const char*);
-SOAP_FMAC3 struct Damis__C45Response * SOAP_FMAC4 soap_in_Damis__C45Response(struct soap*, const char*, struct Damis__C45Response *, const char*);
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_Damis__C45Response(struct soap*, const struct Damis__C45Response *, const char*, const char*);
-
-#ifndef soap_write_Damis__C45Response
-#define soap_write_Damis__C45Response(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_Damis__C45Response(soap, data),0) || soap_put_Damis__C45Response(soap, data, "Damis:C45Response", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_read_Damis__DF
+#define soap_read_Damis__DF(soap, data) ( soap_begin_recv(soap) || !soap_get_Damis__DF(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 struct Damis__C45Response * SOAP_FMAC4 soap_get_Damis__C45Response(struct soap*, struct Damis__C45Response *, const char*, const char*);
+SOAP_FMAC1 struct Damis__DF * SOAP_FMAC2 soap_instantiate_Damis__DF(struct soap*, int, const char*, const char*, size_t*);
 
-#ifndef soap_read_Damis__C45Response
-#define soap_read_Damis__C45Response(soap, data) ( soap_begin_recv(soap) || !soap_get_Damis__C45Response(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+inline struct Damis__DF * soap_new_Damis__DF(struct soap *soap, int n = -1) { return soap_instantiate_Damis__DF(soap, n, NULL, NULL, NULL); }
+
+inline struct Damis__DF * soap_new_req_Damis__DF(struct soap *soap, std::string& X, double r, double dL, double dT, int maxCalcTime) { struct Damis__DF *_p = soap_instantiate_Damis__DF(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__DF(soap, _p); _p->X = X; _p->r = r; _p->dL = dL; _p->dT = dT; _p->maxCalcTime = maxCalcTime; } return _p; }
+
+inline struct Damis__DF * soap_new_set_Damis__DF(struct soap *soap, std::string& X, double r, double dL, double dT, int maxCalcTime) { struct Damis__DF *_p = soap_instantiate_Damis__DF(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__DF(soap, _p); _p->X = X; _p->r = r; _p->dL = dL; _p->dT = dT; _p->maxCalcTime = maxCalcTime; } return _p; }
+
+inline void soap_delete_Damis__DF(struct soap *soap, struct Damis__DF *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_Damis__DF(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_Damis__DFResponse
+#define SOAP_TYPE_Damis__DFResponse (43)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_Damis__DFResponse(struct soap*, struct Damis__DFResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_Damis__DFResponse(struct soap*, const struct Damis__DFResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_Damis__DFResponse(struct soap*, const char*, int, const struct Damis__DFResponse *, const char*);
+SOAP_FMAC3 struct Damis__DFResponse * SOAP_FMAC4 soap_in_Damis__DFResponse(struct soap*, const char*, struct Damis__DFResponse *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_Damis__DFResponse(struct soap*, const struct Damis__DFResponse *, const char*, const char*);
+
+#ifndef soap_write_Damis__DFResponse
+#define soap_write_Damis__DFResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_Damis__DFResponse(soap, data),0) || soap_put_Damis__DFResponse(soap, data, "Damis:DFResponse", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 struct Damis__C45Response * SOAP_FMAC2 soap_instantiate_Damis__C45Response(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 struct Damis__DFResponse * SOAP_FMAC4 soap_get_Damis__DFResponse(struct soap*, struct Damis__DFResponse *, const char*, const char*);
 
-inline struct Damis__C45Response * soap_new_Damis__C45Response(struct soap *soap, int n = -1) { return soap_instantiate_Damis__C45Response(soap, n, NULL, NULL, NULL); }
+#ifndef soap_read_Damis__DFResponse
+#define soap_read_Damis__DFResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_Damis__DFResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
 
-inline struct Damis__C45Response * soap_new_req_Damis__C45Response(struct soap *soap, std::string& Y, double calcTime, double algorithmError) { struct Damis__C45Response *_p = soap_instantiate_Damis__C45Response(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__C45Response(soap, _p); _p->Y = Y; _p->calcTime = calcTime; _p->algorithmError = algorithmError; } return _p; }
+SOAP_FMAC1 struct Damis__DFResponse * SOAP_FMAC2 soap_instantiate_Damis__DFResponse(struct soap*, int, const char*, const char*, size_t*);
 
-inline struct Damis__C45Response * soap_new_set_Damis__C45Response(struct soap *soap, std::string& Y, double calcTime, double algorithmError) { struct Damis__C45Response *_p = soap_instantiate_Damis__C45Response(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__C45Response(soap, _p); _p->Y = Y; _p->calcTime = calcTime; _p->algorithmError = algorithmError; } return _p; }
+inline struct Damis__DFResponse * soap_new_Damis__DFResponse(struct soap *soap, int n = -1) { return soap_instantiate_Damis__DFResponse(soap, n, NULL, NULL, NULL); }
 
-inline void soap_delete_Damis__C45Response(struct soap *soap, struct Damis__C45Response *p) { soap_delete(soap, p); }
+inline struct Damis__DFResponse * soap_new_req_Damis__DFResponse(struct soap *soap, std::string& Y, double calcTime, double algorithmError) { struct Damis__DFResponse *_p = soap_instantiate_Damis__DFResponse(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__DFResponse(soap, _p); _p->Y = Y; _p->calcTime = calcTime; _p->algorithmError = algorithmError; } return _p; }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_Damis__C45Response(struct soap*, int, int, void*, size_t, const void*, size_t);
+inline struct Damis__DFResponse * soap_new_set_Damis__DFResponse(struct soap *soap, std::string& Y, double calcTime, double algorithmError) { struct Damis__DFResponse *_p = soap_instantiate_Damis__DFResponse(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__DFResponse(soap, _p); _p->Y = Y; _p->calcTime = calcTime; _p->algorithmError = algorithmError; } return _p; }
+
+inline void soap_delete_Damis__DFResponse(struct soap *soap, struct Damis__DFResponse *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_Damis__DFResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_Damis__MLP
 #define SOAP_TYPE_Damis__MLP (42)
@@ -878,9 +878,9 @@ SOAP_FMAC1 struct Damis__MLP * SOAP_FMAC2 soap_instantiate_Damis__MLP(struct soa
 
 inline struct Damis__MLP * soap_new_Damis__MLP(struct soap *soap, int n = -1) { return soap_instantiate_Damis__MLP(soap, n, NULL, NULL, NULL); }
 
-inline struct Damis__MLP * soap_new_req_Damis__MLP(struct soap *soap, std::string& X, int h1pNo, int h2pNo, int h3pNo, double dL, double dT, double dV, int maxIteration, int p, int maxCalcTime) { struct Damis__MLP *_p = soap_instantiate_Damis__MLP(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__MLP(soap, _p); _p->X = X; _p->h1pNo = h1pNo; _p->h2pNo = h2pNo; _p->h3pNo = h3pNo; _p->dL = dL; _p->dT = dT; _p->dV = dV; _p->maxIteration = maxIteration; _p->p = p; _p->maxCalcTime = maxCalcTime; } return _p; }
+inline struct Damis__MLP * soap_new_req_Damis__MLP(struct soap *soap, std::string& X, int h1pNo, int h2pNo, double qty, bool kFoldValidation, int maxIteration, int p, int maxCalcTime) { struct Damis__MLP *_p = soap_instantiate_Damis__MLP(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__MLP(soap, _p); _p->X = X; _p->h1pNo = h1pNo; _p->h2pNo = h2pNo; _p->qty = qty; _p->kFoldValidation = kFoldValidation; _p->maxIteration = maxIteration; _p->p = p; _p->maxCalcTime = maxCalcTime; } return _p; }
 
-inline struct Damis__MLP * soap_new_set_Damis__MLP(struct soap *soap, std::string& X, int h1pNo, int h2pNo, int h3pNo, double dL, double dT, double dV, int maxIteration, int p, int maxCalcTime) { struct Damis__MLP *_p = soap_instantiate_Damis__MLP(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__MLP(soap, _p); _p->X = X; _p->h1pNo = h1pNo; _p->h2pNo = h2pNo; _p->h3pNo = h3pNo; _p->dL = dL; _p->dT = dT; _p->dV = dV; _p->maxIteration = maxIteration; _p->p = p; _p->maxCalcTime = maxCalcTime; } return _p; }
+inline struct Damis__MLP * soap_new_set_Damis__MLP(struct soap *soap, std::string& X, int h1pNo, int h2pNo, double qty, bool kFoldValidation, int maxIteration, int p, int maxCalcTime) { struct Damis__MLP *_p = soap_instantiate_Damis__MLP(soap, -1, NULL, NULL, NULL); if (_p) { soap_default_Damis__MLP(soap, _p); _p->X = X; _p->h1pNo = h1pNo; _p->h2pNo = h2pNo; _p->qty = qty; _p->kFoldValidation = kFoldValidation; _p->maxIteration = maxIteration; _p->p = p; _p->maxCalcTime = maxCalcTime; } return _p; }
 
 inline void soap_delete_Damis__MLP(struct soap *soap, struct Damis__MLP *p) { soap_delete(soap, p); }
 

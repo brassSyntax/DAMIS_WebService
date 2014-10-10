@@ -12,95 +12,130 @@
 #include <vector>
 #include <string>
 
-/**
- * Class represents arrf file that is inherited from DamisFile
- */
-class ArffFile : public DamisFile //
+
+ /** \brief ARFF file parsing class.
+  *
+  * ArffFile class is inherited from the DamisFile class.
+  */
+
+class ArffFile : public DamisFile
 {
 
 public:
-	 /**
-	 * Function returns vector of attribute names (from the attribute section class excluded)
-	 */
+
+     /** \brief ArffFile constructor.
+      *
+      * \param pref std::string Parameter indicates the file name prefix value.
+      *
+      */
 	ArffFile(std::string pref);
 
+    /** \brief Virtual destructor.
+     *
+     */
 	virtual ~ArffFile();
-	 /**
-	 * Function returns vector of attribute names (from the attribute section class excluded)
+     /** \brief Function returns vector of attribute names (from the attribute section class excluded).
+      *
+      * \return std::vector<std::string>
+      *
+      */
+	std::vector<std::string> getAttributeName();
+     /** \brief Function returns vector of attribute types (from the attribute section class excluded).
+      *
+      * \return std::vector<std::string>
+      *
+      */
+	std::vector<std::string> getAttributeType();
+	 /** \brief Function returns vector of possible classes that object may have (from the attribute section).
+	 *
+	 * \return std::vector<std::string>
 	 */
-	std::vector<std::string> getAttributeNames();
-	 /**
-	 * Function returns vector of attribute types (from the attribute section class excluded)
+	std::vector<std::string> getStringClass();
+	 /** \brief Function returns vector of object's class values in string (from data section).
+	 *
+	 * \return std::vector<std::string>
 	 */
-	std::vector<std::string> getAttributeTypes();
-	 /**
-	 * Function returns vector of possible classes (from the attribute section)
+	std::vector<std::string> getStringClassAttribute();
+	 /** \brief Function returns vector of object's class values in int (from the data section).
+	 *
+	 * \return std::vector<int>
 	 */
-	std::vector<std::string> getStringClassNames();
-	 /**
-	 * Function returns vector of possible classes (from the attribute section)
+	std::vector<int> getIntClass();
+    /** \brief Function returns vector of object's class values in int (from attribute section).
+	 *
+	 * \return std::vector<int>
 	 */
-	std::vector<std::string> getClasses();
-	 /**
-	 * Function returns vector of object's class values
+	std::vector<int> getIntClassAttribute();
+     /** \brief Function returns data form data section (string format without class).
+	 *
+	 * \return std::vector<std::vector<double>>
 	 */
-	std::vector<std::string> getClassAttribute();
-     /**
-	 * Function returns data in data section (string format without class)
+    std::vector<std::vector<double>> getDoubleData();
+     /** \biref Function returns data in data section (string format without class).
+	 *
+	 * \return std::vector<std::vector<std::string>>
 	 */
-	std::vector<std::vector<std::string>> getRawDataStringFormat();
-     /**
-	 * Function returns class attribute index
+	std::vector<std::vector<std::string>> getStringData();
+     /** \brief Function returns class attribute index.
+	 *
+	 * \return int
 	 */
 	 int getClassAttributeIndex();
-	 /**
-	 * Function returns number of ttributes (without class)
+	 /** \brief Function returns number of attributes (without class).
+	 *
+	 * \return int
 	 */
-	int getNumberOfAttributes();
-	 /**
-	 * Function indicates if the class section is found in arff file
+     int getNumberOfAttributes();
+     /** \brief Function returns number of rows/objects (without class).
+	 *
+	 * \return int
+	 */
+     int getNumberOfObjects();
+	 /** \brief Function indicates if the class section is found in arff file.
+	 *
+	 * \return bool
 	 */
 	bool isClassFound();
+    /** \brief Function retruns i,j th data value from the arff file data section.
+     *
+     * \param int i Parameter indicates the column.
+     * \param int j Parameter indicates the row.
+     * \return double
+     *
+     */
+	double getDoubleDataAt(int i, int j);
 
 protected:
-    /**
-	 * Function reads and validates arff file (all the data are stored in string format)
+    /** \brief Function reads and validates arff file. If file is valid reurns true.
+	 *
+	 * \return bool
 	 */
 	bool readArffFile();
 
 private:
-	/**
-	 * Attribute that holds attribute names of the arff file
-	 */
-	std::vector<std::string> attributeNames;
-	/**
-	 * Attribute that holds attribute types
-	 */
-	std::vector<std::string> attributeTypes;
-	/**
-	 * Attribute that has class labels
-	 */
-	std::vector<std::string> objectClasses;
-	/**
-	 * Attribute that holds each object class
-	 */
-	std::vector<std::string> classAttribute;
-	 /**
-	 * Is class attribute found
-	 */
-    bool classFound;
-	/**
-	 * Attribute that holds class index
-	 */
-	int attributeClassIndex;
-    /**
-	 * Number of features in data section of the arff file
-	 */
-    int numberOfAttributes;
-	/**
-	 * Attribute that holds raw data (without class) in double format
-	 */
-	std::vector<std::vector<std::string>> rawStringData;
 
+	std::vector<std::string> attributeName; /**< Attribute that holds attribute names of the arff file. */
+
+	std::vector<std::string> attributeType;/**< Attribute that holds attribute types. */
+
+	std::vector<int> attributeIntClass; /**< Attribute that holds object class names in int format (from attribute section). */
+
+	std::vector<std::string> attributeStringClass; /**< Attribute that holds object class names in string format (from attribute section). */
+
+	std::vector<int> objIntClass; /**< Attribute that holds object class names in int format. */
+
+	std::vector<std::string> objStringClass; /**< Attribute that holds object class names in string format. */
+
+    bool classFound; /**< Is class attribute found. */
+
+	int classAttributeIndex; /**< ttribute that holds class index. */
+
+    int noOfAtt; /**< Number of features in data section of the arff file. */
+
+    int noOfObj; /**< Number of objects in data section of the arff file. */
+
+	std::vector<std::vector<std::string>> stringData; /**< Attribute that holds raw data (without class) in string format. */
+
+	std::vector<std::vector<double>> doubleData; /**< Attribute that holds raw data (without class) in double format. */
 };
 #endif //!defined (ARFFFILE_H)

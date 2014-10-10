@@ -1,0 +1,1 @@
+wsdl2h -I D:\gsoap\gsoap-2.8\gsoap\WS -n DAMIS -N Damis  -_ -w -o DAMIS.h http://158.129.140.146/damis/damis.wsdl

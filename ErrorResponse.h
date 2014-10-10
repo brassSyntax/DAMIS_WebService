@@ -10,34 +10,52 @@
 
 #include <string>
 
-/**
- * Class that saves the errors and returns to the SOAP client if present
- */
+ /** \brief Class that saves the errors and returns to the SOAP client if present
+  *
+  */
 class ErrorResponse
 {
 
 public:
+    /** \brief Constructor
+     *
+     */
 	ErrorResponse();
+    /** \brief Destructor
+     *
+     */
 	virtual ~ErrorResponse();
-
+    /** \brief Returns fault string
+     *
+     * \return std::string
+     */
 	static std::string getFaultString();
+    /** \brief Returns fault details
+     * \return std::string
+     *
+     */
 	static std::string getFaultDetail();
+    /** \brief Sets fault details
+     *
+     * \param std::string detail fault description
+     * \param bool append = true if append faults
+     * \return void
+     *
+     */
 	static void setFaultDetail(std::string detail, bool append = true);
+    /** \brief Indicates if there were faults
+     * \return bool
+     *
+     */
 	static bool isFaultFound();
 
 private:
-	/**
-	 * Fault string
-	 */
-	static std::string faultString;
-	/**
-	 * Attribute that holds fault description
-	 */
-	static std::string faultDetail;
-	/**
-	 * Indicates if the fault has been trigerred
-	 */
-	static bool fault;
+
+	static std::string faultString; /**< Fault string */
+
+	static std::string faultDetail; /**< Attribute that holds fault description */
+
+	static bool fault; /**< Indicates if the fault has been trigerred */
 
 };
-#endif // (ERRORRESPONSE_H)
+#endif //!(ERRORRESPONSE_H)

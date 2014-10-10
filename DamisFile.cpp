@@ -18,11 +18,11 @@ DamisFile::~DamisFile(){
  */
 DamisFile::DamisFile(std::string preffix){
 //Generate input file name with passed preffix
-DamisFile::fileName = HelperMethods::generateFileName(preffix);
+DamisFile::fileName.assign(HelperMethods::generateFileName(preffix));
 //Add generated file name to sorage path
-DamisFile::filePath = ServiceSettings::localDataFileSavePath + DamisFile::fileName;
+DamisFile::filePath.assign(ServiceSettings::localDataFileSavePath + DamisFile::fileName);
 //Add generated file name to the http path
-DamisFile::fileHttpPath =ServiceSettings::httpDataFileSavePath + DamisFile::fileName;
+DamisFile::fileHttpPath.assign(ServiceSettings::httpDataFileSavePath + DamisFile::fileName);
 
 
 }
