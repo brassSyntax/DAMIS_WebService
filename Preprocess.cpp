@@ -19,9 +19,9 @@
 Preprocess::Preprocess(InitDamisService* initFile):ServeRequest(initFile)
 {
     LOG (INFO) << "Data preprocessing has been called";
-//pakeista    
+//pakeista
 altOutFile = NULL;
-   
+
 // Preprocess::writeClass.reserve(0);
    // ServeRequest::writeData.reserve(0);
    // ServeRequest::tmpDataVector.reserve(0);
@@ -222,14 +222,14 @@ void Preprocess::transposeData()
     ServeRequest::writeData.resize(serveFile->getNumberOfObjects(), ServeRequest::tmpDataVector);*/
 
     std::vector<std::string> attrNames;
-    std::string tmp = "attr_";
+    std::string tmp = "attr";
 
     for (int i = 0; i < serveFile->getNumberOfObjects(); i++) //rows becomes attributes
     {
         tmp.append(std::to_string(static_cast<long long>(i+1)));
-        tmp.append(" NUMBER");
+        tmp.append(" NUMERIC");
         attrNames.push_back(tmp);
-        tmp = "attr_";
+        tmp = "attr";
     }
 
     std::vector<std::string> dummy;

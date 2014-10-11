@@ -107,7 +107,7 @@ std::vector<std::string> ServeRequest::prepareAttributeSection(std::vector<std::
             LOG(INFO) <<"No type, no class information (string string string)";
             for (unsigned int i = 0; i < attributeNameList.size(); i++)
             {
-                retData.at(i).append(" NUMBER");
+                retData.at(i).append(" NUMERIC");
             }
         }
         if (!possibleClasses.empty())
