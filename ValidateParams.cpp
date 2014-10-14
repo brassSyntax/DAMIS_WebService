@@ -180,7 +180,7 @@ void ValidateParams::mlp(int h1pNo, int h2pNo, double qty, bool validationMethod
    if (!validationMethod)
         ValidateParams::validateInterval(qty, 0, 100, "qty", false, false );
     else
-        ValidateParams::validateInterval(qty, 1, ValidateParams::inFile->getNumberOfAttributes(), "qty", true, true );
+        ValidateParams::validateInterval(qty, 2, ValidateParams::inFile->getNumberOfObjects(), "qty", true, true );
 
   // ValidateParams::validateInterval(dT, 1, 100, "dT");
 
@@ -192,7 +192,7 @@ void ValidateParams::mlp(int h1pNo, int h2pNo, double qty, bool validationMethod
 
     ValidateParams::validateInterval(maxIteration, 1, 10000, "maxIteration");
 
-    ValidateParams::validateGreatherThan(h1pNo, 1, "h1pNo", true);
+    ValidateParams::validateGreatherThan(h1pNo, 0, "h1pNo", true);
 
     ValidateParams::validateGreatherThan(h2pNo, 0, "h2pNo", true);
 
