@@ -48,7 +48,7 @@ ClassificationGrouping::~ClassificationGrouping(){
         char bufferqty[32];
         snprintf(bufferqty, sizeof(bufferqty), "%g", qty);
 
-        this->exeParams = " -al MLP -h1pNo " + std::to_string(static_cast<long long>(h1)) + " -h2pNo " + std::to_string(static_cast<long long>(h2)) + " -qty " +  bufferqty + " -maxIter " +  std::to_string(static_cast<long long>(maxIter)) + "-kFoldVal " + std::to_string(static_cast<long long>(valMethod));
+        this->exeParams = " -al MLP -h1pNo " + std::to_string(static_cast<long long>(h1)) + " -h2pNo " + std::to_string(static_cast<long long>(h2)) + " -qty " +  bufferqty + " -maxIter " +  std::to_string(static_cast<long long>(maxIter)) + " -kFoldVal " + std::to_string(static_cast<long long>(valMethod));
         this->run();
     }
 
