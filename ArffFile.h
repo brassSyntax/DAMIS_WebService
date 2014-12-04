@@ -71,7 +71,7 @@ public:
 	 * \return std::vector<std::vector<double>>
 	 */
     std::vector<std::vector<double>> getDoubleData();
-     /** \biref Function returns data in data section (string format without class).
+     /** \brief Function returns data in data section (string format without class).
 	 *
 	 * \return std::vector<std::vector<std::string>>
 	 */
