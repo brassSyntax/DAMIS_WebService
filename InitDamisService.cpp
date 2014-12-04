@@ -150,7 +150,7 @@ bool InitDamisService::checkForHttpError()
 
     LOG (INFO) << "Checking if downloaded file " << DamisFile::getFilePath()<< " is not error stream";
     std::ifstream src(DamisFile::getFilePath(), std::ios::binary);
-    std::string httpErr1 = "404.0 - Not Found";
+    std::string httpErr1 = "404 Not Found";
     std::string line;
 
     bool found = false;

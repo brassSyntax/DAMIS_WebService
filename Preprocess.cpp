@@ -251,7 +251,7 @@ void Preprocess::transposeData()
 void Preprocess::cleanData()
 {
     LOG (INFO) << "Initiating data cleaning";
-    this->writeDataToFile(outFile->getFilePath(), prepareDataSection(serveFile->getDoubleData(), serveFile->getStringClassAttribute()),prepareAttributeSection(serveFile->getAttributeName(),serveFile->getAttributeType(),serveFile->getStringClassAttribute()));
+    this->writeDataToFile(outFile->getFilePath(), prepareDataSection(serveFile->getDoubleData(), serveFile->getStringClass()),prepareAttributeSection(serveFile->getAttributeName(),serveFile->getAttributeType(),serveFile->getStringClassAttribute()));
 }
 
 Preprocess::~Preprocess()

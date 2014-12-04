@@ -415,3 +415,14 @@ int HelperMethods::strToInt(std::string cmdParam)
         return atoi(cmdParam.c_str());
     }
 }
+
+// copy in binary mode
+bool HelperMethods::copyFile(const char *SRC, const char* DEST)
+{
+    std::ifstream src(SRC, std::ios::binary);
+    std::ofstream dest(DEST, std::ios::binary);
+    dest << src.rdbuf();
+    return src && dest;
+}
+
+

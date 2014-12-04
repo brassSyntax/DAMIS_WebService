@@ -102,6 +102,8 @@ public:
       */
     static int strToInt(std::string cmdParam);
 
+    static bool copyFile(const char*, const char*);
+
 
 private:
 	static const char* alphanum; /**< Aphanumeric pattern for unique input and output file generation */
