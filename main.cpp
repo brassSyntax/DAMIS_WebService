@@ -47,7 +47,7 @@ int main()
 
     // LOG(INFO) << "Invoking service operation";
 
- /*   InitDamisService *dFile = new InitDamisService("http://158.129.140.146/Damis/Data/testData/iris_su_klasem.arff", "_input_"); //if clen data -> pass validateFile = false
+    /*InitDamisService *dFile = new InitDamisService("http://158.129.140.134:8087/damis/data/err/_forCalculus_vmNddeGiVIkqQKOxGmTF.arff", "_input_"); //if clen data -> pass validateFile = false
 
     if (!ErrorResponse::isFaultFound()) //remove error checking if clean data is called
     {
@@ -418,10 +418,13 @@ int DAMISService::DMA(std::string X, int d, int maxIteration, double eps, double
 /// Web service operation 'RELMDS' (returns error code or SOAP_OK)
 int DAMISService::RELMDS(std::string X, int d, int maxIteration, double eps, double noOfBaseVectors, int selStrategy, int maxCalcTime, struct Damis__RELMDSResponse &_param_1)
 {
+
     LOG(INFO) << "Initiating RELMDS serve request";
     LOG(INFO) <<"Got parameters: "<<"X - "<<X<<"; d - "<< d <<"; maxIteration - "<< maxIteration << "; eps - "<< eps<< "; noOfBaseVectors - "<< noOfBaseVectors << "; selStrategy - "<< selStrategy<< "; maxCalcTime - "<< maxCalcTime;
     clock_t start;
     //  long double duration;
+
+    selStrategy--; //GUI passes 1,2,3 but Algorithms accepts 0,1,2 thus need to decrement the value
 
     //LOG(INFO)<<"Starting clock";
     start = clock();
@@ -431,6 +434,7 @@ int DAMISService::RELMDS(std::string X, int d, int maxIteration, double eps, dou
 
     if (!ErrorResponse::isFaultFound())
     {
+       //selStrategy--;
         //LOG(INFO)<<"Instantiating ValidateParams object";
         ValidateParams *validate = new ValidateParams(dFile);
         //LOG(INFO)<<"Validating passed RELMDS params";
