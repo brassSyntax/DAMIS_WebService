@@ -279,17 +279,39 @@ void CallCalculus::run()
                 ErrorResponse::setFaultDetail(fileName);
                 //bad qsub output file
             }
-        //dele files if there were no erros
+
 			if (!ErrorResponse::isFaultFound())
 			{
-				LOG(INFO) << "Job finished SUCESSFULY";
-				HelperMethods::deleteFile(cFile->getFilePath());
-				HelperMethods::deleteFile(bashFile.c_str());
-				HelperMethods::deleteFile(qsubOut.c_str());
-				HelperMethods::deleteFile(qsubOutO.c_str());
-				HelperMethods::deleteFile(qsubOutE.c_str());
-				HelperMethods::deleteFile(bashFileUpper.c_str());
+				LOG(INFO) << "Job SUCESS";
 			}
+			else
+            {
+                //copy input data and bash file to err directory for further inspection
+                LOG(INFO) << "Copying bash and data files to err directory";
+                LOG(INFO) << "Job FAILURE";
+                struct stat st;
+                std::string pathStr(ServiceSettings::workingDirMPI + "err");
+                const char *path = pathStr.c_str();  //ServiceSettings::localDataFileSavePath.c_str() + "\err";
+                stat(path, &st);
+                bool isdir = S_ISDIR(st.st_mode);
+                if (isdir)
+                {
+                    std::string sorce = bashFile;
+                    std::string destination = pathStr + "/_bash_" + fileName + ".sh";
+                    HelperMethods::copyFile(sorce.c_str(), destination.c_str());
+                    sorce = cFile->getFilePath();
+                    destination = pathStr + "/" + cFile->getFileName();
+                    HelperMethods::copyFile(sorce.c_str(), destination.c_str());
+                }//copy files
+            }
+
+            HelperMethods::deleteFile(cFile->getFilePath());
+            HelperMethods::deleteFile(bashFile.c_str());
+            HelperMethods::deleteFile(qsubOut.c_str());
+            HelperMethods::deleteFile(qsubOutO.c_str());
+            HelperMethods::deleteFile(qsubOutE.c_str());
+            HelperMethods::deleteFile(bashFileUpper.c_str());
+
     }
 	else if (ServiceSettings::runDestination == 2) //run on VU MIF cluster
 	{
@@ -415,10 +437,10 @@ void CallCalculus::run()
 							{
 								stopChecking = true;
 							}
-							else
+							/*else
 							{
 								ErrorResponse::setFaultDetail("Got unknown error while trying to mpirun Algorithms");
-							}
+							}*/
 						}
 					calcFile.close();
 					statFile.close();
@@ -448,13 +470,34 @@ void CallCalculus::run()
 		if (!ErrorResponse::isFaultFound())
 		{
 			LOG(INFO) << "Job finished SUCESSFULY";
-			HelperMethods::deleteFile(cFile->getFilePath());
-			HelperMethods::deleteFile(bashFile.c_str());
-			HelperMethods::deleteFile(qsubOut.c_str());
-			HelperMethods::deleteFile(qsubOutO.c_str());
-			HelperMethods::deleteFile(qsubOutE.c_str());
-			HelperMethods::deleteFile(bashFileUpper.c_str());
 		}
+		else
+            {
+                //copy input data and bash file to err directory for further inspection
+                LOG(INFO) << "Copying bash and data files to err directory";
+                LOG(INFO) << "Job FAILURE";
+                struct stat st;
+                std::string pathStr(ServiceSettings::workingDirMPI + "err");
+                const char *path = pathStr.c_str();  //ServiceSettings::localDataFileSavePath.c_str() + "\err";
+                stat(path, &st);
+                bool isdir = S_ISDIR(st.st_mode);
+                if (isdir)
+                {
+                    std::string sorce = bashFile;
+                    std::string destination = pathStr + "/_bash_" + fileName + ".sh";
+                    HelperMethods::copyFile(sorce.c_str(), destination.c_str());
+                    sorce = cFile->getFilePath();
+                    destination = pathStr + "/" + cFile->getFileName();
+                    HelperMethods::copyFile(sorce.c_str(), destination.c_str());
+                }//copy files
+            }
+
+        HelperMethods::deleteFile(cFile->getFilePath());
+        HelperMethods::deleteFile(bashFile.c_str());
+        HelperMethods::deleteFile(qsubOut.c_str());
+        HelperMethods::deleteFile(qsubOutO.c_str());
+        HelperMethods::deleteFile(qsubOutE.c_str());
+        HelperMethods::deleteFile(bashFileUpper.c_str());
 	}
 
 }
