@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="DAMIS_WebService" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/DAMIS_WebService" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/DAMIS_WebService" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="ArffFile.cpp" />
+		<Unit filename="ArffFile.h" />
+		<Unit filename="CGIvars/getcgivars.cpp" />
+		<Unit filename="CGIvars/getcgivars.h" />
+		<Unit filename="CallCalculus.cpp" />
+		<Unit filename="CallCalculus.h" />
+		<Unit filename="ClassificationGrouping.cpp" />
+		<Unit filename="ClassificationGrouping.h" />
+		<Unit filename="DamisFile.cpp" />
+		<Unit filename="DamisFile.h" />
+		<Unit filename="DimensionReduction.cpp" />
+		<Unit filename="DimensionReduction.h" />
+		<Unit filename="ErrorResponse.cpp" />
+		<Unit filename="ErrorResponse.h" />
+		<Unit filename="HelperMethods.cpp" />
+		<Unit filename="HelperMethods.h" />
+		<Unit filename="InitDamisService.cpp" />
+		<Unit filename="InitDamisService.h" />
+		<Unit filename="InitDamisServiceFile.cpp" />
+		<Unit filename="InitDamisServiceFile.h" />
+		<Unit filename="Preprocess.cpp" />
+		<Unit filename="Preprocess.h" />
+		<Unit filename="README.md" />
+		<Unit filename="ServeRequest.cpp" />
+		<Unit filename="ServeRequest.h" />
+		<Unit filename="ServiceSettings.cpp" />
+		<Unit filename="ServiceSettings.h" />
+		<Unit filename="Statistics.cpp" />
+		<Unit filename="Statistics.h" />
+		<Unit filename="ValidateParams.cpp" />
+		<Unit filename="ValidateParams.h" />
+		<Unit filename="curl/curl.h" />
+		<Unit filename="curl/curlbuild.h" />
+		<Unit filename="curl/curlrules.h" />
+		<Unit filename="curl/curlver.h" />
+		<Unit filename="curl/easy.h" />
+		<Unit filename="curl/mprintf.h" />
+		<Unit filename="curl/multi.h" />
+		<Unit filename="curl/stdcheaders.h" />
+		<Unit filename="curl/typecheck-gcc.h" />
+		<Unit filename="gsoap/gen headers/2014_03_21/soapDAMISService.h" />
+		<Unit filename="gsoap/gen headers/2014_03_21/soapH.h" />
+		<Unit filename="gsoap/gen headers/2014_03_21/soapStub.h" />
+		<Unit filename="gsoap/gen headers/2014_03_21/stdsoap2.h" />
+		<Unit filename="gsoap/gen headers/2014_03_24/soapDAMISService.h" />
+		<Unit filename="gsoap/gen headers/2014_03_24/soapH.h" />
+		<Unit filename="gsoap/gen headers/2014_03_24/soapStub.h" />
+		<Unit filename="gsoap/gen headers/2014_03_24/stdsoap2.h" />
+		<Unit filename="gsoap/gen headers/DAMIS.h" />
+		<Unit filename="gsoap/gen headers/soapDAMISService.h" />
+		<Unit filename="gsoap/gen headers/soapH.h" />
+		<Unit filename="gsoap/gen headers/soapStub.h" />
+		<Unit filename="gsoap/gen headers/stdsoap2.h" />
+		<Unit filename="gsoap/soapC.cpp" />
+		<Unit filename="gsoap/soapDAMISService.cpp" />
+		<Unit filename="gsoap/soapDAMISService.h" />
+		<Unit filename="gsoap/soapH.h" />
+		<Unit filename="gsoap/soapStub.h" />
+		<Unit filename="gsoap/stdsoap2.cpp" />
+		<Unit filename="gsoap/stdsoap2.h" />
+		<Unit filename="logging/easylogging++.h" />
+		<Unit filename="logging/easylogging++3.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
