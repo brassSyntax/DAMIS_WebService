@@ -45,11 +45,11 @@ If you encountered no errors, proceed to the next step.
 
 In CodeBlocks, go to ```Settings -> Compiler...``` and turn on C++11 flag
 
-![Compiler Settings](/docs/compiler-settings.png)
+![Compiler Settings](/docs/compiler-settings.PNG)
 
 Then, in the same window go to linker settings and add ```libcurl.so``` file from
 ```/lib64/``` by CentOS default.
 
-![Linker Settings](/docs/linker-settings.png)
+![Linker Settings](/docs/linker-settings.PNG)
 
 Now you can build the project.
