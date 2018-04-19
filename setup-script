@@ -1,0 +1,12 @@
+# install git and gcc
+sudo yum -y install git gcc gcc-c++
+
+# gcc related dependencies
+sudo yum -y install libgcc.i686 glibc-devel.i686 libgcc glibc-devel
+
+# install cURL lib
+sudo yum -y install libcurl.x86_64 libcurl-devel.x86_64
+
+# install extra repo and codeblocks from it
+sudo yum -y install epel-release
+sudo yum -y install codeblocks
