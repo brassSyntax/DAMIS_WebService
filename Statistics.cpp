@@ -25,20 +25,6 @@ void Statistics::statPrimitives()
 
     LOG (INFO) << "Initiating statistical primiteve calculation";
 
-    std::vector<std::string> attrNames;
-    std::string tmp;
-
-        tmp = "min";tmp.append(" NUMERIC"); attrNames.push_back(tmp);
-        tmp = "max"; tmp.append(" NUMERIC"); attrNames.push_back(tmp);
-        tmp = "mean"; tmp.append(" NUMERIC"); attrNames.push_back(tmp);
-        tmp = "std"; tmp.append(" NUMERIC"); attrNames.push_back(tmp);
-        tmp = "median"; tmp.append(" NUMERIC"); attrNames.push_back(tmp);
-
-
-    std::vector<std::string> dummy;
-    dummy.reserve(0); //pass dummy vector to write function since no attribute after transform are left
-
-
     for (int i = 0; i < serveFile->getNumberOfAttributes(); i++)
     {
         for (int j = 0; j < serveFile->getNumberOfObjects(); j++)
@@ -50,25 +36,23 @@ void Statistics::statPrimitives()
             double mean = HelperMethods::getMean(ServeRequest::tmpDataVector);
             double stdev = HelperMethods::getStd(ServeRequest::tmpDataVector); //daliname is N o ne is N-1
 
-            size_t n = ServeRequest::tmpDataVector.size() / 2;
+            size_t n = ServeRequest::tmpDataVector.size() >> 1;
             nth_element(ServeRequest::tmpDataVector.begin(), ServeRequest::tmpDataVector.begin()+ n, ServeRequest::tmpDataVector.end());
 
             double median = ServeRequest::tmpDataVector.at(n);
             ServeRequest::tmpDataVector.clear();
 
-           //  Statistics::tmpDataVector = {min, max, mean, stdev, median}; if C11 compiler
-           ServeRequest::tmpDataVector.push_back(min);
-           ServeRequest::tmpDataVector.push_back(max);
-           ServeRequest::tmpDataVector.push_back(mean);
-           ServeRequest::tmpDataVector.push_back(stdev);
-           ServeRequest::tmpDataVector.push_back(median);
-
-            ServeRequest::writeData.push_back(ServeRequest::tmpDataVector);
-            ServeRequest::tmpDataVector.clear();
+            ServeRequest::writeData.push_back(std::vector<double>{min, max, mean, stdev, median});
     }
+    {
+        std::vector<std::string> attrNames={"min NUMERIC", "max NUMERIC",
+                "mean NUMERIC", "std NUMERIC", "median NUMERIC"};
 
-    this->writeDataToFile(outFile->getFilePath(), prepareDataSection(ServeRequest::writeData, dummy), prepareAttributeSection(attrNames, dummy, dummy));
+        std::vector<std::string> dummy;
+        dummy.reserve(0); //pass dummy vector to write function since no attribute after transform are left
+        this->writeDataToFile(outFile->getFilePath(), prepareDataSection(ServeRequest::writeData, dummy), prepareAttributeSection(attrNames, dummy, dummy));
 
+    }
 }
 
 
