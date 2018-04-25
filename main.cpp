@@ -20,7 +20,7 @@
 #include "ClassificationGrouping.h"
 #include "HelperMethods.h"
 
-
+#include <chrono>
 #include <iostream>
 
 int streamWSDLFile(struct soap *sp); //function prototype for wsdl file streaming
@@ -38,18 +38,17 @@ int main()
     {
         sendError(ds.soap);
         return SOAP_ERR;
-    }
-
-
+    };
     easyloggingpp::Configurations conf(ServiceSettings::logingConfFilePath);
     // Reconfigure single logger
-    easyloggingpp::Loggers::reconfigureAllLoggers(conf);
 
-    // LOG(INFO) << "Invoking service operation";
+    //easyloggingpp::Loggers::reconfigureAllLoggers(conf);
 
-    /*InitDamisService *dFile = new InitDamisService("http://158.129.140.134:8087/damis/data/err/_forCalculus_vmNddeGiVIkqQKOxGmTF.arff", "_input_"); //if clen data -> pass validateFile = false
+     LOG(INFO) << "Invoking service operation";
 
-    if (!ErrorResponse::isFaultFound()) //remove error checking if clean data is called
+    InitDamisService *dFile = new InitDamisService("file:///home/z/damis/arff_files/random_1M.arff", "_input_"); //if clen data -> pass validateFile = false
+
+   if (!ErrorResponse::isFaultFound()) //remove error checking if clean data is called
     {
         ValidateParams *validate = new ValidateParams(dFile); //when call clean data do not validate file, i.e also pass FALSE otherwise validate->isValid may return false
         //validate->normData(false, 0, 1, 1);
@@ -57,8 +56,8 @@ int main()
         //validate->filterData(true, 3, 4, 1);
         //validate->splitData(false, 10, 20, 1);
         //validate->transposeData(1);
-        //validate->statPrimitives(10);
-        validate->pca(false,2,2);
+        validate->statPrimitives(10);
+        //validate->pca(false,2,2);
         //validate->smacofMds(3,4,0.2,true,2,7);
         //validate->dma(2,10,0.88,1,4);
 
@@ -76,25 +75,24 @@ int main()
 
         if (validate->isValid())
         {
-            // Preprocess *dRun = new Preprocess (dFile);
+            Preprocess *dRun = new Preprocess (dFile);
 
+            LOG(INFO)<<"Starting clock";
+            auto start = std::chrono::steady_clock::now();
 
-            clock_t start;
-            //long double duration;
+      ////      dRun->cleanData();
+      //      dRun->transposeData();
+    //        dRun->splitData(true, 10, 20);
+  //          dRun->normData(false, 0, 1);
+//            dRun->filterData(false, 3, 4);
 
-            //LOG(INFO)<<"Starting clock";
-            start = clock();
-            //dRun->cleanData();
-            //dRun->transposeData();
-            //dRun->splitData(true, 10, 20);
-            //dRun->normData(false, 0, 1);
-            //dRun->filterData(false, 3, 4);
+            Statistics *dStat = new Statistics (dFile);
+            dStat->statPrimitives();
+            auto clockEnd = std::chrono::steady_clock::now();
+            LOG(INFO)<< double(std::chrono::duration_cast <std::chrono::microseconds> (clockEnd - start).count())/1e6;
 
-            //Statistics *dStat = new Statistics (dFile);
-            //dStat->statPrimitives();
-
-            DimensionReduction *dRun = new DimensionReduction(1, 10, dFile);
-             dRun->runPCA(false, 2);
+//            DimensionReduction *dRun = new DimensionReduction(1, 10, dFile);
+             //dRun->runPCA(false, 2);
             //dRun->runDMA(2,10,0.0088, 1);
             //void relMds(int d, int maxIteration, double eps, double noOfBaseVectors, int selStrategy, int maxCalcTime);
             // dRun->runRELATIVEMDS(2,1,0.0004,10,1);
@@ -109,10 +107,10 @@ int main()
           //  dRun->runDecForest(0.63, 80, 20, 75);
 
 
-            //          std::cout1 << (clock() - start) / (double) CLOCKS_PER_SEC;
 
             std::string response = dRun->outFile->getHttpPath();
             std::string statFile = dRun->statFile->getFilePath();
+
             //std::string altFile = dRun->altOutFile->getFilePath();
 
             // double algorithmError = HelperMethods::getAttributeValue(dRun->statFile->getFilePath(), "algError");
@@ -123,14 +121,14 @@ int main()
             //overall time for request serving
             //response->calcTime = (clock() - start) / (double) CLOCKS_PER_SEC;
             //HelperMethods::deleteFile(dRun->outFile->getFilePath());
-            HelperMethods::deleteFile(statFile);
+           // HelperMethods::deleteFile(statFile);
 
         }
         else
             return -1; //fault was found
     }
     else
-        return -1; //fault was found*/
+        return -1; //fault was found
 
 
     //std::cout1 << "Hello world!" << std::endl;
@@ -148,7 +146,7 @@ int main()
     int i;
 
     cgivars = getcgivars();
-
+    return 0;
     if (cgivars != NULL)
     {
         LOG(INFO)<<"Checking CGI variables if it is WSDL content request";
