@@ -1,0 +1,22 @@
+% RELEASE
+wsdlPath /home/damis/apache/htdocs/damis/Damis.wsdl
+logingConfFilePath ./Logging.conf 
+pathToAlgorithmsExe /home/damis/exec/Algorithms/bin/Release/Algorithms
+
+localDataFileSavePath /home/damis/apache/htdocs/damis/data/
+httpDataFileSavePath http://158.129.140.134:8087/damis/data/
+dataFileExtension .arff
+lenghtOfTmpFileName 20
+
+% time in seconds how lon to keep files in data directory
+keepFilesInDirectory 172800
+
+noOfProcessors 128
+
+% 1 means that code is suitable to run on MII cluster
+runDestination 1
+
+%pathToMPIExecutable /opt/mpich2/gnu/bin/mpirun
+
+pathToMPIExecutable /home/damis/mpich/bin/mpiexec
+workingDirMPI /home/damis/apache/htdocs/damis/data/
