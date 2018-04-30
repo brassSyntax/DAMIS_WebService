@@ -1,0 +1,391 @@
+# depslib dependency file v1.0
+1524141658 source:/home/damis/Documents/DAMIS_WebService/ArffFile.cpp
+	"ArffFile.h"
+	"ErrorResponse.h"
+	"HelperMethods.h"
+	"logging/easylogging++.h"
+	<string>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/ArffFile.h
+	"DamisFile.h"
+	<vector>
+	<string>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/DamisFile.h
+	<string>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/ErrorResponse.h
+	<string>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/HelperMethods.h
+	<string>
+	<vector>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/logging/easylogging++.h
+	<syslog.h>
+	<ctime>
+	<cstring>
+	<cstdlib>
+	<cctype>
+	<cwchar>
+	<csignal>
+	<cerrno>
+	<cstdarg>
+	<locale>
+	<cxxabi.h>
+	<execinfo.h>
+	<sys/system_properties.h>
+	<sys/stat.h>
+	<sys/time.h>
+	<direct.h>
+	<Windows.h>
+	<winsock.h>
+	<string>
+	<vector>
+	<map>
+	<utility>
+	<functional>
+	<algorithm>
+	<fstream>
+	<iostream>
+	<sstream>
+	<memory>
+	<type_traits>
+	<mutex>
+	<thread>
+	<pthread.h>
+	<list>
+	<queue>
+	<deque>
+	<set>
+	<bitset>
+	<stack>
+	<array>
+	<unordered_map>
+	<unordered_set>
+	<QString>
+	<QByteArray>
+	<QVector>
+	<QList>
+	<QPair>
+	<QMap>
+	<QQueue>
+	<QSet>
+	<QLinkedList>
+	<QHash>
+	<QMultiHash>
+	<QStack>
+	<boost/container/vector.hpp>
+	<boost/container/stable_vector.hpp>
+	<boost/container/list.hpp>
+	<boost/container/deque.hpp>
+	<boost/container/map.hpp>
+	<boost/container/flat_map.hpp>
+	<boost/container/set.hpp>
+	<boost/container/flat_set.hpp>
+	<wx/vector.h>
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/CallCalculus.cpp
+	"CallCalculus.h"
+	"ServiceSettings.h"
+	"ServeRequest.h"
+	"HelperMethods.h"
+	"logging/easylogging++.h"
+	<iostream>
+	<unistd.h>
+	<wait.h>
+	"ErrorResponse.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/CallCalculus.h
+	"ServeRequest.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/ServeRequest.h
+	<vector>
+	<string>
+	"InitDamisService.h"
+	"DamisFile.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/InitDamisService.h
+	"ArffFile.h"
+	<string>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/ServiceSettings.h
+	<string>
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/CGIvars/getcgivars.cpp
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"getcgivars.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/CGIvars/getcgivars.h
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/ClassificationGrouping.cpp
+	"logging/easylogging++.h"
+	"ClassificationGrouping.h"
+	"CallCalculus.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/ClassificationGrouping.h
+	"CallCalculus.h"
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/DamisFile.cpp
+	"DamisFile.h"
+	"HelperMethods.h"
+	"ServiceSettings.h"
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/DimensionReduction.cpp
+	"logging/easylogging++.h"
+	"DimensionReduction.h"
+	<math.h>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/DimensionReduction.h
+	"CallCalculus.h"
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/ErrorResponse.cpp
+	"ErrorResponse.h"
+	"logging/easylogging++.h"
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/gsoap/soapC.cpp
+	"soapH.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/gsoap/soapH.h
+	"soapStub.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/gsoap/soapStub.h
+	<vector>
+	"stdsoap2.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/gsoap/stdsoap2.h
+	"soapdefs.h"
+	"config.h"
+	<ioctl.h>
+	<stdlib.h>
+	<sys_types.h>
+	<StdIOPalm.h>
+	<sys_socket.h>
+	"palmFunctions.h"
+	<e32def.h>
+	<sys/ioctl.h>
+	<locale.h>
+	<xlocale.h>
+	<sys\param.h>
+	<sys\socket.h>
+	<netinet\in.h>
+	<netdb.h>
+	<stdio.h>
+	<fcntl.h>
+	<string.h>
+	<stdlib.h>
+	<memory.h>
+	<errno.h>
+	<cextdecs.h(TIME,FILE_CLOSE_,AWAITIOX,DELAY,FILEINFO,FILE_GETINFO_)>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	<limits.h>
+	<ntlm.h>
+	<poll.h>
+	<string>
+	<iostream>
+	<errno.h>
+	<sys/types.h>
+	<sys/timeb.h>
+	<time.h>
+	<sys/socket.h>
+	<sys/stream.h>
+	<sys/protosw.h>
+	<sys/socket.h>
+	<sockLib.h>
+	<selectLib.h>
+	<strings.h>
+	<strings.h>
+	<sys/stream.h>
+	<sys/socketvar.h>
+	<sys/times.h>
+	<sys/time.h>
+	<netinet/in.h>
+	<netinet/tcp_var.h>
+	<netinet/tcp.h>
+	<arpa/inet.h>
+	<io.h>
+	<fcntl.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<ws2spi.h>
+	<hostLib.h>
+	<ioctl.h>
+	<ioLib.h>
+	<netdb.h>
+	<netinet/in.h>
+	<unistd.h>
+	<fcntl.h>
+	<sys/select.h>
+	<fcgi_stdio.h>
+	<openssl/bio.h>
+	<openssl/err.h>
+	<openssl/rand.h>
+	<openssl/ssl.h>
+	<openssl/x509v3.h>
+	<gnutls/gnutls.h>
+	<gnutls/x509.h>
+	<gcrypt.h>
+	<zlib.h>
+	<math.h>
+	<stdint.h>
+	<inttypes.h>
+	<sys/inttypes.h>
+	<stdint.h>
+	<bits/wordsize.h>
+	"httpLib.h"
+	<private/mathP.h>
+	<ipcom_key_db.h>
+	<float.h>
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/gsoap/soapDAMISService.cpp
+	"soapDAMISService.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/gsoap/soapDAMISService.h
+	"soapH.h"
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/gsoap/stdsoap2.cpp
+	"stdsoap2.h"
+	<ipcom_key_db.h>
+	<pthread.h>
+	<pth.h>
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/HelperMethods.cpp
+	"HelperMethods.h"
+	"ServiceSettings.h"
+	"logging/easylogging++.h"
+	<dirent.h>
+	<time.h>
+	<string>
+	<numeric>
+	<cmath>
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/InitDamisService.cpp
+	"InitDamisService.h"
+	"logging/easylogging++.h"
+	"ErrorResponse.h"
+	"ServiceSettings.h"
+	"curl/curl.h"
+	"HelperMethods.h"
+	<iostream>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/curl/curl.h
+	"curlver.h"
+	"curlbuild.h"
+	"curlrules.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	<support/SupportDefs.h>
+	"easy.h"
+	"multi.h"
+	"typecheck-gcc.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/curl/curlver.h
+
+1524141658 /home/damis/Documents/DAMIS_WebService/curl/curlbuild.h
+	<sys/types.h>
+	<sys/socket.h>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/curl/curlrules.h
+
+1524141658 /home/damis/Documents/DAMIS_WebService/curl/easy.h
+
+1524141658 /home/damis/Documents/DAMIS_WebService/curl/multi.h
+	"curl.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/curl/typecheck-gcc.h
+
+1524141686 source:/home/damis/Documents/DAMIS_WebService/InitDamisServiceFile.cpp
+	"InitDamisServiceFile.h"
+	"logging/easylogging++.h"
+	"ErrorResponse.h"
+	"ServiceSettings.h"
+	"curl/curl.h"
+	"HelperMethods.h"
+	<iostream>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/InitDamisServiceFile.h
+	"ArffFile.h"
+	<string>
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/main.cpp
+	"ServiceSettings.h"
+	"gsoap/soapDAMISService.h"
+	"gsoap/soapH.h"
+	"gsoap/DAMIS.nsmap"
+	"CGIvars/getcgivars.h"
+	"logging/easylogging++.h"
+	"InitDamisService.h"
+	"ValidateParams.h"
+	"ErrorResponse.h"
+	"Preprocess.h"
+	"Statistics.h"
+	"DimensionReduction.h"
+	"ClassificationGrouping.h"
+	"HelperMethods.h"
+	<iostream>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/gsoap/DAMIS.nsmap
+	"soapH.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/ValidateParams.h
+	<string>
+	"InitDamisService.h"
+
+1524141658 /home/damis/Documents/DAMIS_WebService/Preprocess.h
+	"ServeRequest.h"
+	<string>
+
+1524141658 /home/damis/Documents/DAMIS_WebService/Statistics.h
+	"ServeRequest.h"
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/Preprocess.cpp
+	"Preprocess.h"
+	"HelperMethods.h"
+	<math.h>
+	<numeric>
+	"logging/easylogging++.h"
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/ServeRequest.cpp
+	"ServeRequest.h"
+	"logging/easylogging++.h"
+	"HelperMethods.h"
+	<vector>
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/ServiceSettings.cpp
+	"ServiceSettings.h"
+	"ErrorResponse.h"
+	"HelperMethods.h"
+	"logging/easylogging++.h"
+	<string>
+	<limits.h>
+	<unistd.h>
+	<fstream>
+	<sstream>
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/Statistics.cpp
+	"Statistics.h"
+	"HelperMethods.h"
+	"logging/easylogging++.h"
+
+1524141658 source:/home/damis/Documents/DAMIS_WebService/ValidateParams.cpp
+	"ValidateParams.h"
+	"ErrorResponse.h"
+	"logging/easylogging++.h"
+	"HelperMethods.h"
+	"ServiceSettings.h"
+	<vector>
+	<iostream>
+

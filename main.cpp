@@ -19,6 +19,7 @@
 #include "DimensionReduction.h"
 #include "ClassificationGrouping.h"
 #include "HelperMethods.h"
+#include "gtest/gtest.h"
 
 #include <chrono>
 #include <iostream>
