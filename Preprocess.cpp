@@ -41,27 +41,25 @@ void Preprocess::filterData(bool retFilteredData, double zValue, int attrIndex)
     exObjIndex.reserve(0);
 
     ServeRequest::tmpDataVector.reserve(noOfObjects);
-
+    std::vector<std::vector<double>> currentData = serveFile->getDoubleData();
     //double mean = 0;
-    double stdev = 0;
 
     for (int j = 0; j < noOfObjects; j++)
-        ServeRequest::tmpDataVector.push_back(serveFile->getDoubleDataAt(j, attrIndex));
+        ServeRequest::tmpDataVector.push_back(currentData[j][attrIndex]);
 
     //mean = HelperMethods::getMean(DamisService::tmpDataVector);
-    stdev = HelperMethods::getStd(ServeRequest::tmpDataVector); //daliname is N o ne is N-1
+    double checkStdev (HelperMethods::getStd(ServeRequest::tmpDataVector) * zValue); //daliname is N o ne is N-1
 
     for (int i = 0; i < noOfObjects; i++)
-        if (fabs(ServeRequest::tmpDataVector.at(i)) > zValue * stdev)
+        if (fabs(ServeRequest::tmpDataVector.at(i)) > checkStdev)
             exObjIndex.push_back(i);
 
     ServeRequest::tmpDataVector.clear();
 
-    bool skip;
-
     for (int i = 0; i < noOfObjects; i++)
     {
-        skip = false;
+        bool skip (false);
+
         for (int z = 0; z < exObjIndex.size(); z++)
             if (i == exObjIndex.at(z))
             {
@@ -71,10 +69,9 @@ void Preprocess::filterData(bool retFilteredData, double zValue, int attrIndex)
 
         for (int j = 0; j < serveFile->getNumberOfAttributes(); j++)
         {
-            if (retFilteredData && !skip)
-                ServeRequest::tmpDataVector.push_back(serveFile->getDoubleDataAt(i,j));
-            else if (!retFilteredData && skip)
-                ServeRequest::tmpDataVector.push_back(serveFile->getDoubleDataAt(i, j));
+            if (retFilteredData ^ skip){
+                ServeRequest::tmpDataVector.push_back(currentData[i][j]);
+                LOG(INFO) << i << " " << j;}
             else
                  break;
         }
@@ -94,25 +91,21 @@ void Preprocess::filterData(bool retFilteredData, double zValue, int attrIndex)
 void Preprocess::normData(bool normMeanStd, double a, double b)
 {
     LOG (INFO) << "Initializing norm data function. Got parameters normMeanStd - "<<normMeanStd <<" a - " <<a << " b - " << b;
+    int numbOfObj (serveFile->getNumberOfObjects());
+    std::vector<std::vector<double>> currentData = serveFile->getDoubleData();
 
-    ServeRequest::tmpDataVector.reserve(serveFile->getNumberOfObjects()); //norms each columns not row, thus initialize elements for total row number
-    ServeRequest::writeData.reserve(serveFile->getNumberOfObjects());
+    ServeRequest::tmpDataVector.reserve(numbOfObj); //norms each columns not row, thus initialize elements for total row number
+    ServeRequest::writeData.reserve(numbOfObj);
 
-    for (int i = 0; i < serveFile->getNumberOfObjects(); i++) //need to calculate mean and std for each attribute in every row
-    {
-        for (int j = 0; j < serveFile->getNumberOfAttributes(); j++)
-            ServeRequest::tmpDataVector.push_back(serveFile->getDoubleData().at(i).at(j));
-
-        ServeRequest::writeData.push_back(ServeRequest::tmpDataVector);
-        ServeRequest::tmpDataVector.clear();
-    }
     //gal galima atsisakyti 6i8 dviej7 cikl7
 
     for (int i = 0; i < serveFile->getNumberOfAttributes(); i++) //need to calculate mean and std for each attribute in every row
     {
-        for (int j = 0; j < serveFile->getNumberOfObjects(); j++)
+        for (int j = 0; j < numbOfObj; j++)
             {
-                ServeRequest::tmpDataVector.push_back(serveFile->getDoubleDataAt(j,i));
+                if(i==0)
+                    ServeRequest::writeData.push_back(currentData[i]);
+                ServeRequest::tmpDataVector.push_back(currentData[j][i]);
                // std::cout << i << " " << j << " " << tmpDataVector.at(j) << std::endl;
             }
 
@@ -121,7 +114,7 @@ void Preprocess::normData(bool normMeanStd, double a, double b)
             double mean = HelperMethods::getMean(ServeRequest::tmpDataVector);
             double stdev = HelperMethods::getStd(ServeRequest::tmpDataVector); //daliname is N o ne is N-1
 
-            for (int z = 0; z < serveFile->getNumberOfObjects(); z++) // update attribute values in each row
+            for (int z = 0; z < numbOfObj; z++) // update attribute values in each row
                 ServeRequest::writeData.at(z).at(i) = (ServeRequest::tmpDataVector.at(z) - mean + a) * b / stdev; //update data
         }
         else
@@ -129,11 +122,8 @@ void Preprocess::normData(bool normMeanStd, double a, double b)
             double min = *std::min_element(ServeRequest::tmpDataVector.begin(), ServeRequest::tmpDataVector.end());
             double max = *std::max_element(ServeRequest::tmpDataVector.begin(), ServeRequest::tmpDataVector.end());
 
-            for (int z = 0; z < serveFile->getNumberOfObjects(); z++) // update attribute values in each row
-                {
+            for (int z = 0; z < numbOfObj; z++) // update attribute values in each row
                     ServeRequest::writeData.at(z).at(i) = a + (double)((ServeRequest::tmpDataVector.at(z) - min) * (b - a)) / (max - min); //update data
- //                   std::cout << z << " " << i << " " << ServeRequest::writeData.at(z).at(i) << std::endl;
-                }
         }
         ServeRequest::tmpDataVector.clear();
     }
@@ -159,17 +149,12 @@ void Preprocess::splitData(bool reshufleObjects,double firstSubsetPerc, double s
   //  ServeRequest::writeData.resize(firstCount, ServeRequest::tmpDataVector);
    // Preprocess::writeClass.resize(firstCount);
 
-    std::vector<std::vector<double>> secondData;
-    secondData.reserve(secondCount);
-    std::vector<std::string> secondClass;
-    secondClass.reserve(secondCount);
+    std::vector<std::vector<double>> secondData; secondData.reserve(secondCount);
+    std::vector<std::string> secondClass; secondClass.reserve(secondCount);
 
     //initialize vector with index values
-    for( int i = 0; i < serveFile->getNumberOfObjects(); i++)
+    for( int i = 0; i < objNo; i++)
         objIndex.push_back(i);
-
-    int fIndex, sIndex; // index that values must be swaped
-    int tmp;
 
     if (reshufleObjects)
     {
@@ -177,20 +162,23 @@ void Preprocess::splitData(bool reshufleObjects,double firstSubsetPerc, double s
         for (int i = 0; i < objNo * 5; i++)
         {
             //generate indexes
-            fIndex = HelperMethods::getRrandomInRange(0, objNo);
-            sIndex = HelperMethods::getRrandomInRange(0, objNo);
+            int fIndex (HelperMethods::getRrandomInRange(0, objNo));
+            int sIndex (HelperMethods::getRrandomInRange(0, objNo));
             //change index order
-            tmp = objIndex.at(fIndex);
+
+            int tmp (objIndex.at(fIndex));
+
             objIndex.at(fIndex) = objIndex.at(sIndex);
             objIndex.at(sIndex) = tmp;
         }
     }
 
+    std::vector<std::vector<double>> currentData = serveFile->getDoubleData();
     for (int i = 0; i < firstCount + secondCount; i++)
     {
        //std::cout << i;
         for (int j = 0; j < serveFile->getNumberOfAttributes(); j++)
-            ServeRequest::tmpDataVector.push_back(serveFile->getDoubleDataAt((objIndex.at(i)),j));
+            ServeRequest::tmpDataVector.push_back(currentData[objIndex.at(i)][j]);
 
         if (i < firstCount)
         {
@@ -222,31 +210,29 @@ void Preprocess::transposeData()
     ServeRequest::writeData.resize(serveFile->getNumberOfObjects(), ServeRequest::tmpDataVector);*/
 
     std::vector<std::string> attrNames;
-    std::string tmp = "attr";
 
     for (int i = 0; i < serveFile->getNumberOfObjects(); i++) //rows becomes attributes
     {
+        std::string tmp("attr");
         tmp.append(std::to_string(static_cast<long long>(i+1)));
         tmp.append(" NUMERIC");
         attrNames.push_back(tmp);
-        tmp = "attr";
     }
 
-    std::vector<std::string> dummy;
-    dummy.reserve(0); //pass dummy vector to write function since no attribute after transform are left
-
+    std::vector<std::vector<double>> currentData = serveFile->getDoubleData();
     for (int i = 0; i < serveFile ->getNumberOfAttributes(); i++)
     {
         for (int j = 0; j < serveFile->getNumberOfObjects(); j++)
-        {
-            ServeRequest::tmpDataVector.push_back(serveFile->getDoubleDataAt(j,i));
-            //std::cout << i << " " << j <<std::endl;
-        }
+            ServeRequest::tmpDataVector.push_back(currentData[j][i]);
+
         ServeRequest::writeData.push_back(ServeRequest::tmpDataVector);
         ServeRequest::tmpDataVector.clear();
     }
-    this->writeDataToFile(outFile->getFilePath(), prepareDataSection(ServeRequest::writeData, dummy), prepareAttributeSection(attrNames, dummy, dummy));
-}
+    {
+        std::vector<std::string> dummy; dummy.reserve(0); //pass dummy vector to write function since no attribute after transform are left
+        this->writeDataToFile(outFile->getFilePath(), prepareDataSection(ServeRequest::writeData, dummy), prepareAttributeSection(attrNames, dummy, dummy));
+    }
+ }
 
 void Preprocess::cleanData()
 {
