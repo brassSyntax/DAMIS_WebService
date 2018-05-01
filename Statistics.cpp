@@ -24,12 +24,13 @@ void Statistics::statPrimitives()
 {
 
     LOG (INFO) << "Initiating statistical primiteve calculation";
+    std::vector<std::vector<double>> dataFile = serveFile->getDoubleData();
 
-    for (int i = 0; i < serveFile->getNumberOfAttributes(); i++)
+    for (int i = 0; i < dataFile[0].size(); i++)
     {
-        for (int j = 0; j < serveFile->getNumberOfObjects(); j++)
+        for (int j = 0; j < dataFile.size(); j++)
         {
-            ServeRequest::tmpDataVector.push_back(serveFile->getDoubleDataAt(j, i));
+            ServeRequest::tmpDataVector.push_back(dataFile[j][i]);
         }
             double min = *std::min_element(ServeRequest::tmpDataVector.begin(), ServeRequest::tmpDataVector.end());
             double max = *std::max_element(ServeRequest::tmpDataVector.begin(), ServeRequest::tmpDataVector.end());
@@ -48,8 +49,7 @@ void Statistics::statPrimitives()
         std::vector<std::string> attrNames={"min NUMERIC", "max NUMERIC",
                 "mean NUMERIC", "std NUMERIC", "median NUMERIC"};
 
-        std::vector<std::string> dummy;
-        dummy.reserve(0); //pass dummy vector to write function since no attribute after transform are left
+        std::vector<std::string> dummy;dummy.reserve(0); //pass dummy vector to write function since no attribute after transform are left
         this->writeDataToFile(outFile->getFilePath(), prepareDataSection(ServeRequest::writeData, dummy), prepareAttributeSection(attrNames, dummy, dummy));
 
     }
