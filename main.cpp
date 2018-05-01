@@ -30,9 +30,13 @@ int sendError(struct soap *sp, std::string message); //function prototype for er
 
 _INITIALIZE_EASYLOGGINGPP
 
+TEST(Misc, SanityTest) {
+    EXPECT_EQ(1,1);
+}
+
 //namespace easyloggingpp {}
 
-int main()
+int main(int argc, char** argv)
 {
     DAMISService ds(true, true);
     if (!ServiceSettings::initialize())
@@ -132,9 +136,6 @@ int main()
         return -1; //fault was found
 
 
-    //std::cout1 << "Hello world!" << std::endl;
-
-
     LOG(INFO) <<"Service has been invoked";
     // DAMISService ds;
 
@@ -147,7 +148,10 @@ int main()
     int i;
 
     cgivars = getcgivars();
-    return 0;
+
+    ::testing::InitGoogleTest(&argc,argv);
+    return RUN_ALL_TESTS();
+
     if (cgivars != NULL)
     {
         LOG(INFO)<<"Checking CGI variables if it is WSDL content request";
