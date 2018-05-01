@@ -46,7 +46,7 @@ int main()
 
      LOG(INFO) << "Invoking service operation";
 
-    InitDamisService *dFile = new InitDamisService("file:///home/z/damis/arff_files/random_1M.arff", "_input_"); //if clen data -> pass validateFile = false
+    InitDamisService *dFile = new InitDamisService("file:///home/z/damis/arff_files/iris.arff", "_input_"); //if clen data -> pass validateFile = false
 
    if (!ErrorResponse::isFaultFound()) //remove error checking if clean data is called
     {
