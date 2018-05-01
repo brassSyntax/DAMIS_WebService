@@ -1,9 +1,9 @@
 % RELEASE
 wsdlPath /home/damis/apache/htdocs/damis/Damis.wsdl
-logingConfFilePath ./Logging.conf 
-pathToAlgorithmsExe /home/damis/exec/Algorithms/bin/Release/Algorithms
+logingConfFilePath /home/damis/Documents/DAMIS_WebService/logging/Logging.conf 
+%pathToAlgorithmsExe /home/damis/exec/Algorithms/bin/Release/Algorithms
 
-localDataFileSavePath /home/damis/apache/htdocs/damis/data/
+localDataFileSavePath /home/damis/Documents/DAMIS_WebService/resources/output/ 
 httpDataFileSavePath http://158.129.140.134:8087/damis/data/
 dataFileExtension .arff
 lenghtOfTmpFileName 20
@@ -19,4 +19,4 @@ runDestination 1
 %pathToMPIExecutable /opt/mpich2/gnu/bin/mpirun
 
 pathToMPIExecutable /home/damis/mpich/bin/mpiexec
-workingDirMPI /home/damis/apache/htdocs/damis/data/
+workingDirMPI /home/damis/Documents/DAMIS_WebService/resources/output/
