@@ -156,8 +156,8 @@ int main(int argc, char** argv)
             //std::cout<<"!!!!!!!!!" + dFile->size() + "!!!!!!!!";
             //dRun->filterData(false, 3, 4);
 
-            Statistics *dStat = new Statistics (dFile);
-            dStat->statPrimitives();
+            //Statistics *dStat = new Statistics (dFile);
+            //dStat->statPrimitives();
             auto clockEnd = std::chrono::steady_clock::now();
             LOG(INFO)<< double(std::chrono::duration_cast <std::chrono::microseconds> (clockEnd - start).count())/1e6;
 

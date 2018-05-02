@@ -71,7 +71,7 @@ void Preprocess::filterData(bool retFilteredData, double zValue, int attrIndex)
         {
             if (retFilteredData ^ skip){
                 ServeRequest::tmpDataVector.push_back(currentData[i][j]);
-                LOG(INFO) << i << " " << j;}
+            }
             else
                  break;
         }

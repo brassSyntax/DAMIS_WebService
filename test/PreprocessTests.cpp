@@ -19,8 +19,6 @@ protected:
 
         InitDamisService *dFile = new InitDamisService("file:///home/damis/Documents/arff_files/random_1K.arff", "_input_");
         Preprocess *dRun = new Preprocess (dFile);
-
-        std::cout << "fuck you";
     }
 
 };
