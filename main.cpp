@@ -34,6 +34,70 @@ TEST(Misc, SanityTest) {
     EXPECT_EQ(1,1);
 }
 
+TEST(PreprocessTests, TestNormData) {
+    InitDamisService *input = new InitDamisService("file:////home/damis/Documents/DAMIS_WebService/resources/test/TEST_normData_input.arff", "_input_");
+    InitDamisService *output_expected = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/test/TEST_normData_output.arff", "");
+    Preprocess *dRun = new Preprocess (input);
+
+    dRun->normData(false, 0, 1);
+
+    InitDamisService *output_actual = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/output/" + dRun->outFile->getFileName(), "");
+
+    EXPECT_TRUE(output_actual->getDoubleData() == output_expected->getDoubleData());
+}
+
+TEST(PreprocessTests, TestTransposeData) {
+    InitDamisService *input = new InitDamisService("file:////home/damis/Documents/DAMIS_WebService/resources/test/TEST_transposeData_input.arff", "_input_");
+    InitDamisService *output_expected = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/test/TEST_transposeData_output.arff", "");
+    Preprocess *dRun = new Preprocess (input);
+
+    dRun->transposeData();
+
+    InitDamisService *output_actual = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/output/" + dRun->outFile->getFileName(), "");
+
+    EXPECT_TRUE(output_actual->getDoubleData() == output_expected->getDoubleData());
+}
+
+TEST(PreprocessTests, TestCleanData) {
+    InitDamisService *input = new InitDamisService("file:////home/damis/Documents/DAMIS_WebService/resources/test/TEST_cleanData_input.arff", "_input_");
+    InitDamisService *output_expected = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/test/TEST_cleanData_output.arff", "");
+    Preprocess *dRun = new Preprocess (input);
+
+    dRun->cleanData();
+
+    InitDamisService *output_actual = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/output/" + dRun->outFile->getFileName(), "");
+
+    EXPECT_TRUE(output_actual->getDoubleData() == output_expected->getDoubleData());
+}
+
+TEST(PreprocessTests, TestSplitData) {
+
+}
+
+TEST(PreprocessTests, TestFilterData) {
+    InitDamisService *input = new InitDamisService("file:////home/damis/Documents/DAMIS_WebService/resources/test/TEST_filterData_input.arff", "_input_");
+    InitDamisService *output_expected = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/test/TEST_filterData_output.arff", "");
+    Preprocess *dRun = new Preprocess (input);
+
+    dRun->filterData(false, 3, 4);
+
+    InitDamisService *output_actual = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/output/" + dRun->outFile->getFileName(), "");
+
+    EXPECT_TRUE(output_actual->getDoubleData() == output_expected->getDoubleData());
+}
+
+TEST(StatisticsTests, TestPrimitives) {
+    InitDamisService *input = new InitDamisService("file:////home/damis/Documents/DAMIS_WebService/resources/test/TEST_statPrimitives_input.arff", "_input_");
+    InitDamisService *output_expected = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/test/TEST_statPrimitives_output.arff", "");
+    Statistics *dStat = new Statistics (input);
+
+    dStat->statPrimitives();
+
+    InitDamisService *output_actual = new InitDamisService("file:///home/damis/Documents/DAMIS_WebService/resources/output/" + dStat->outFile->getFileName(), "");
+
+    EXPECT_TRUE(output_actual->getDoubleData() == output_expected->getDoubleData());
+}
+
 //namespace easyloggingpp {}
 
 int main(int argc, char** argv)
@@ -69,7 +133,7 @@ int main(int argc, char** argv)
         //validate->relMds()
         //validate->relMds(2,10,0.0004,10,1,1);
         //validate->samann(8,7,88,-7,0.1478,8,7);
-        // validate->somMds(4,3,5,8,0.0001,8,-4);
+        //validate->somMds(4,3,5,8,0.0001,8,-4);
         //validate->somMds(4,5,4,100,0.0001,2,1);
         //validate->som()
         //validate->som(4,4,8,1,5);
@@ -85,11 +149,12 @@ int main(int argc, char** argv)
             LOG(INFO)<<"Starting clock";
             auto start = std::chrono::steady_clock::now();
 
-      ////      dRun->cleanData();
-      //      dRun->transposeData();
-    //        dRun->splitData(true, 10, 20);
-  //          dRun->normData(false, 0, 1);
-//            dRun->filterData(false, 3, 4);
+            //dRun->cleanData();
+            //dRun->transposeData();
+            //dRun->splitData(true, 10, 20);
+            //dRun->normData(false, 0, 1);
+            //std::cout<<"!!!!!!!!!" + dFile->size() + "!!!!!!!!";
+            //dRun->filterData(false, 3, 4);
 
             Statistics *dStat = new Statistics (dFile);
             dStat->statPrimitives();

@@ -6,3 +6,4 @@ CodeBlocks ###
 # generated directories
 bin/
 obj/
+resources/output/*
